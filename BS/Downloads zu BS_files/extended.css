@@ -1,0 +1,21 @@
+@import "ess.css";
+div#bereichsnavi ul li.Kinder ul {
+  padding-left: 1.3em;
+}
+
+span.topAlternativ {
+  font-size: 120%;
+  color: #FFFFFF;
+}
+
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+} 
+.group:after {
+	clear: both;
+}
+.group {
+	zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
