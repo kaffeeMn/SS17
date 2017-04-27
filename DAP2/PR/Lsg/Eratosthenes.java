@@ -1,19 +1,34 @@
 public class Eratosthenes{
-    private static boolean isPrime(int n){
-        if(n == 2)  return true;
-        if(n < 2)   return false;
-        int limit = (int) Math.round(Math.sqrt(n));
-        for(int i = 2; i <= limit; ++i)
-            if(n % i == 0)  return false;
-        return true;
-    }
+//    private static boolean isPrime(int n){
+//        if(n == 2)  return true;
+//        if(n < 2)   return false;
+//        int limit = (int) Math.round(Math.sqrt(n));
+//        for(int i = 2; i <= limit; ++i)
+//            if(n % i == 0)  return false;
+//        return true;
+//    }
+//    private static boolean[] sieve(int n){
+//        boolean[] result = new boolean[n-1];
+//        int pos = 0;
+//        for(int i = 2; i <= n; ++i){
+//            if(isPrime(i))  result[pos] = true;
+//            else            result[pos] = false;
+//            ++pos;
+//        }
+//        return result;
+//    }
+//    more efficient
     private static boolean[] sieve(int n){
         boolean[] result = new boolean[n-1];
-        int pos = 0;
-        for(int i = 2; i <= n; ++i){
-            if(isPrime(i))  result[pos] = true;
-            else            result[pos] = false;
-            ++pos;
+        for(boolean b : result){
+            b = true;
+        }
+        for(int i=0; i<n; ++i){
+            if(result[i]){
+                for(int j=2; i*j<n; ++j){
+                    result[j] = false;
+                }
+            }
         }
         return result;
     }
