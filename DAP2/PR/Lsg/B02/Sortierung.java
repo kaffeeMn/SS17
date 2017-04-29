@@ -74,6 +74,28 @@ public class Sortierung{
         assert isSorted(arr);
     }
     private static void mergeSort(int[] arr, int[] tmpArr, int left, int right){
+        if(left<right){
+            int q = (left+right) / 2;
+            mergeSort(arr, tmpArr, left, q);
+            mergeSort(arr, tmpArr, q, right);
+            merge(arr, tmpArr, left, q, right);
+        }
+    }
+    private static void merge(int[] arr, int[] tmpArr, int left, int q, int right){
+        for(int i=left; i<q; ++i)   tmpArr[i] = arr[i];
+        int max = left+q+right;
+        for(int i=q; i<=right; ++i) tmpArr[max-i] = arr[i];
+        int tmpLeft = left;
+        int tmpRight = right;
+        for(int i=left; i<right; ++i){
+            if(tmpArr[tmpLeft] < tmpArr[tmpRight]){
+                arr[i] = tmpArr[tmpLeft];
+                --tmpLeft;
+            }else{
+                arr[i] = tmpArr[tmpRight];
+                --tmpRight;
+            }
+        }
     }
     public static void main(String[] args){
         // checking for a maximum input of 3 parameter and a minum of 1
