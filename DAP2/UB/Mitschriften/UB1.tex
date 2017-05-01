@@ -1,0 +1,74 @@
+\documentclass{article}
+\author{Max Springenberg}
+\title{DAP2-UB 27.4.17}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+% \Theta \Omega \omega
+\begin{document}
+\maketitle
+email Tutor:\\
+anja.rey@tu-dortmund.de\\
+\\
+Abgabe Dienstag 12:00\\
+keine Bloecker, insgesamt 50\%\\
+\subsection{Definitionen}
+$f,g: \mathbb{N} \rightarrow \mathbb{N}\\$
+waechst hoechstens genauso schnell\\
+$
+f(n) \in O(g(n))\\
+\exists c>0.\exists n_0.
+    \forall n \geq n_0.f(n) \leq c*g(n)\\
+$
+\\
+Die Untere Schranke\\
+f waechst mindestens so schnell wie g\\
+$
+f(n) \in \Omega (g(n))\\
+\exists c>0.\exists n_0.
+    \forall n \geq n_0.f(n) \geq c*g(n)\\
+$
+wachst genauso schnell\\
+$
+f(n) \in \Theta (g(n))\\
+f(n) \in O(n) \land f(n) \in \Omega (n)\\
+$
+echt weniger schnell\\
+$
+f(n) \in o(g(n))
+\forall c>0.\exists n_0.
+    \forall n \geq n_0.f(n) < c*g(n)\\
+$
+echt schneller\\
+$
+f(n) \in \omega (g(n))
+\forall c>0.\exists n_0.
+    \forall n \geq n_0.f(n) > geq c*g(n)\\
+$
+Aequivalenzen:\\
+$
+f(n) \in O(g(n)) \leftrightarrow g(n) \in \Omega(f(n))\\
+f(n) \in o(g(n)) \leftrightarrow g(n) \in \omega(f(n))\\
+$
+\newpage
+
+\subsection{Erste Schritte der O-Notation}
+\subsubsection\
+Beh:\\
+$g(n) = n$\\
+Bew:\\
+$
+n_0 \geq 202, c =2017\\
+\Rightarrow f(n) \in O(n) \land f(n) \in \Omega(n)\\
+$
+\subsubsection\
+Beh:\\
+$h(n) = log(n)$\\
+Bew:\\
+$
+log(n) \in o(n)\\
+2017n \in \omega(log(n))\\
+$
+\subsection{Laufzeitanalyse:Primfaktoren}
+\subsubsection\
+\end{document}
