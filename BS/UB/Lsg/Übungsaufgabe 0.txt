@@ -1,0 +1,36 @@
+Übungsaufgabe 0:
+
+
+A0:
+
+1.) In PATH sind alle standard Befhele für das Terminal hionterlegt.
+
+2.) Der Befehl rm löscht Files, aber keine Verzeichnisse.
+    Der Befehl rmdir löscht Verzeichnisse, aber keine Files.
+
+3.) Der Befehl sigterm beendet Prozesse "sanft" indem der belegte 
+    Speicher und Ressourcen wieder frei gegeben werden.
+    Der Befehl sigkill beendet im Gegensatz zu sigterm die Prozesse 
+    sofort, der von dem Prozess reservierte Speicher und Ressourcen
+    bleiben beim beenden mit diesem Befehl weiter belegt.
+
+4.) Der Befehl "man --html=BROWSERNAME" gibt die Handbuchseiten als 
+    HTML Dokument aus. Beispielsweise man --html=firefox gibt einen
+    die manpage zu git in firefox aus.
+    (Auf den Poolrechnern nicht, da dort wahrscheinlich groff nicht 
+    ganz richitg läuft..).
+
+5.) Um die aktuelle Wochennummer in der Konsole auszugeben, kann man 
+    den Befehl "date +%W" verwenden.
+
+6.) luftreibung, luftdichte und g sind globale Variabeln.
+
+    luftdichte ist uninitialisiert also ist es im Block-Storage-Segment.
+    luftreibung ist initialisiert also ist es im Datensegment.
+    luftreibung und luftdichte sind in verschiedenen Segmenten,  weil 
+    luftreibung initialisiert wird und luftdichte nicht.
+    g ist initialisiert also ist es im Datensegment.
+
+    v ist eine lokale Variabel und befindet sich im Stack Segment
+
+    Die Parmeter masse und flaeche der Funktion endgeschwindigkeit() sind lokal also befinden sie sich im Stack Segment.
