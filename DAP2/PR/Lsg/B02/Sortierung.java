@@ -23,8 +23,7 @@ public class Sortierung{
         // end of the runtime, assertions will not be counted
         tEnd = System.currentTimeMillis();
         assert isSorted(arr) : "Feld NICHT sortiert.";
-        msecs = tEnd - tStart;
-        System.out.println("Feld sortiert.\nZeit benoetigt:\t"+msecs);
+        printRunTime(tEnd-tStart);
     }
     private static boolean isSorted(int[] arr){
         // check for an sorted arra by comparing each field with its followup
@@ -66,9 +65,7 @@ public class Sortierung{
     private static int[] randArr(int range){
         java.util.Random numberGenerator = new java.util.Random();
         int[] result = new int[range];
-        System.out.println("there");
         for(int i=0; i<range; ++i) result[i] = numberGenerator.nextInt();
-        System.out.println("there");
         return result;
     }
     /* Aufgabe 2
@@ -82,8 +79,7 @@ public class Sortierung{
         // end of the runtime, assertions will not be counted
         tEnd = System.currentTimeMillis();
         assert isSorted(arr) : "Feld NICHT sortiert.";
-        msecs = tEnd - tStart;
-        System.out.println("Feld sortiert.\nZeit benoetigt:\t"+msecs);
+        printRunTime(tEnd - tStart);
     }
     private static void mergeSort(int[] arr, int[] tmpArr, int left, int right){
         // method like it's been defined in the exercise
@@ -113,12 +109,15 @@ public class Sortierung{
             }
         }
     }
+    private static void printRunTime(long runtime){
+        System.out.println("Feld sortiert.\nZeit benoetigt:\t" + runtime);
+    }
     public static void main(String[] args){
         // checking for a maximum input of 3 parameter and a minum of 1
         int limit = args.length;
         assert(limit>0 && limit <4) : getManual();
         if(limit == 1){
-            // defaults to auf
+            // defaults to insert auf
             try{
                 int range = Integer.parseInt(args[0]);
                 insertionSort(upArr(range));
@@ -166,9 +165,7 @@ public class Sortierung{
                     }
                 }else if(Objects.equals(param, "rand")){
                     if(Objects.equals(method, "insert")){
-                        System.out.println("there");
                         insertionSort(randArr(range));
-                        System.out.println("there");
                     }else if(Objects.equals(method, "merge")){
                         mergeSort(downArr(range));
                     }else{
