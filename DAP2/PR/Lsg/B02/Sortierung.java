@@ -10,11 +10,10 @@ public class Sortierung{
         long tStart, tEnd, msecs;
         // beginning of the runtime
         tStart = System.currentTimeMillis();
-        int limit = arr.length;
-        for(int i=2; i< limit-1; ++i){
-            int key = arr[i];
-            int j = i-1;
-            while ((j>0) && (arr[j]>key)){
+        for(int j=1; j<arr.length; ++j){
+            int key = arr[j];
+            int i = j-1;
+            while ((i>=0) && (arr[i]>key)){
                 arr[i+1] = arr[i];
                 --i;
             }
@@ -29,7 +28,9 @@ public class Sortierung{
         // check for an sorted arra by comparing each field with its followup
         int limit = arr.length;
         assert (limit > 0) : "The array, needs to consist of at least 1 INT.";
-        for(int i = 0; i < limit-1; ++i)    if(arr[i] > arr[i+1]) return false;
+        for(int i = 0; i < limit-1; ++i){
+            if(arr[i] > arr[i+1]) return false;
+        }
         return true;
     }
     private static String getManual(){
@@ -59,7 +60,7 @@ public class Sortierung{
     }
     private static int[] downArr(int range){
         int[] result = new int[range];
-        for(int i=range; i>0; --i)  result[range-i] = i;
+        for(int i=range-1; i>0; --i)  result[range-(i+1)] = i;
         return result;
     }
     private static int[] randArr(int range){
@@ -92,108 +93,153 @@ public class Sortierung{
     }
     private static void merge(int[] arr, int[] tmpArr, int left, int q, int right){
         // coppying arr into tmpArr so arr can be rearanged lateron
-        for(int i=left; i<=q; ++i)   tmpArr[i] = arr[i];
-        // initializing some acsess variables for tmpArr
-        int tmpRight = right;
         int tmpLeft = left;
+        int tmpMid  = q+1;
         for(int i=left; i<=right; ++i){
-            // the idea is to check relations of the two outmost fields in the
-            // array and in-/decrease the acsess variables, to make sure no field
-            // is looked at twice
-            if(tmpArr[tmpLeft] <= tmpArr[tmpRight]){
-                arr[i] = tmpArr[tmpLeft];
-                ++tmpLeft;
+            if(tmpLeft <= q && tmpMid <= right){
+                if(arr[tmpLeft] < arr[tmpMid]){
+                    tmpArr[i] = arr[tmpLeft++];
+                }else{
+                    tmpArr[i] = arr[tmpMid++];
+                }
+            }else if(tmpLeft <= q){
+                tmpArr[i] = arr[tmpLeft++];
             }else{
-                arr[i] = tmpArr[tmpRight];
-                --tmpRight;
+                tmpArr[i] = arr[tmpMid++];
             }
         }
+        for(int i=left; i<=right; ++i) arr[i] = tmpArr[i];
     }
     private static void printRunTime(long runtime){
-        System.out.println("Feld sortiert.\nZeit benoetigt:\t" + runtime);
+        System.out.println("Feld sortiert.\nZeit benoetigt:\t"+runtime+"ms");
     }
     private static void printArr(int[] arr){
-        for(int i=0; i<arr.length; ++i) System.out.print(arr[i]+",");
-        System.out.println();
+        int limit = arr.length;
+        System.out.print("[");
+        for(int i=0; i<limit-1; ++i) System.out.print(arr[i]+",");
+        System.out.println(arr[limit-1]+"]");
+    }
+    private static int[] handleInput(String[] args, int limit, int range, int[] cand){
+        switch(limit){
+            case 1:
+                try{
+                    cand = randArr(range);
+                    mergeSort(cand);
+                }catch(Exception e){
+                    System.out.println(e+"\n"+getManual());
+                }
+                break;
+            case 2:
+                try{
+                    return handleDouble(args[1], range, cand);
+                }catch(Exception e){
+                    System.out.println(e+"\n"+getManual());
+                }
+                break;
+            case 3:
+                try{
+                    return handleTriple(args[1], args[2], range, cand);
+                }catch(Exception e){
+                    System.out.println(e+"\n"+getManual());
+                }
+                break;
+        }
+        return cand;
+    }
+    private static int[] handleDouble(String param, int range, int[] cand){
+        switch(param){
+            case "auf":
+                cand = upArr(range);
+                mergeSort(cand);
+                break;
+            case "ab":
+                cand = downArr(range);
+                mergeSort(cand);
+                break;
+            case "rand":
+                cand = randArr(range);
+                mergeSort(cand);
+                break;
+            case "merge":
+                cand = randArr(range);
+                mergeSort(cand);
+                break;
+            case "insert":
+                cand = randArr(range);
+                insertionSort(cand);
+                break;
+            default:
+                System.out.println(getManual());
+                break;
+        }
+        return cand;
+    }
+    private static int[] handleTriple(String method, String param, int range, int[] cand){
+        switch(param){
+            case "auf":
+                switch(method){
+                    case "insert":
+                        cand = upArr(range);
+                        insertionSort(cand);
+                        break;
+                    case "merge":
+                        cand = upArr(range);
+                        mergeSort(cand);
+                        break;
+                    default:
+                        System.out.println(getManual());
+                        break;
+                }
+                break;
+            case "ab":
+                switch(method){
+                    case "insert":
+                        cand = downArr(range);
+                        insertionSort(cand);
+                        break;
+                    case "merge":
+                        cand = downArr(range);
+                        mergeSort(cand);
+                        break;
+                    default:
+                        System.out.println(getManual());
+                        break;
+                }
+                break;
+            case "rand":
+                switch(method){
+                    case "insert":
+                        cand = randArr(range);
+                        insertionSort(cand);
+                        break;
+                    case "merge":
+                        cand = randArr(range);
+                        mergeSort(cand);
+                        break;
+                    default:
+                        System.out.println(getManual());
+                        break;
+                }
+                break;
+            default:
+                System.out.println(getManual());
+                break;
+        }
+        return cand;
     }
     public static void main(String[] args){
         // checking for a maximum input of 3 parameter and a minum of 1
         int limit = args.length;
         assert(limit>0 && limit <4) : getManual();
-        int range = Integer.parseInt(args[0]);
-        int[] cand = new int[range];
-        if(limit == 1){
-            // defaults to insert auf
-            try{
-                cand = randArr(range);
-                mergeSort(cand);
-            }catch(Exception e){
-                System.out.println(e+"\n"+getManual());
+        try{
+            int range = Integer.parseInt(args[0]);
+            int[] cand = new int[range];
+            cand = handleInput(args, limit, range, cand);
+            if(range <= 100){
+                printArr(cand);
             }
-        }else if(limit == 2){
-            // defaults to mergeSort (to handle part 1 of the exercise)
-            try{
-                String param = args[1];
-                if(Objects.equals(param, "auf")){
-                    cand = upArr(range);
-                    mergeSort(cand);
-                }else if(Objects.equals(param, "ab")){
-                    cand = downArr(range);
-                    mergeSort(cand);
-                }else if(Objects.equals(param, "rand")){
-                    cand = randArr(range);
-                    mergeSort(cand);
-                }else{
-                    System.out.println(getManual());
-                }
-            }catch(Exception e){
-                System.out.println(e+"\n"+getManual());
-            }
-        }else if(limit == 3){
-            // no defaults anymore
-            try{
-                String param = args[2];
-                String method = args[1];
-                if(Objects.equals(param, "auf")){
-                    if(Objects.equals(method, "insert")){
-                        cand = upArr(range);
-                        insertionSort(cand);
-                    }else if(Objects.equals(method, "merge")){
-                        cand = upArr(range);
-                        mergeSort(cand);
-                    }else{
-                        System.out.println(getManual());
-                    }
-                }else if(Objects.equals(param, "ab")){
-                    if(Objects.equals(method, "insert")){
-                        cand = downArr(range);
-                        insertionSort(cand);
-                    }else if(Objects.equals(method, "merge")){
-                        cand = downArr(range);
-                        mergeSort(cand);
-                    }else{
-                        System.out.println(getManual());
-                    }
-                }else if(Objects.equals(param, "rand")){
-                    if(Objects.equals(method, "insert")){
-                        cand = randArr(range);
-                        insertionSort(cand);
-                    }else if(Objects.equals(method, "merge")){
-                        cand = randArr(range);
-                        mergeSort(cand);
-                    }else{
-                        System.out.println(getManual());
-                    }
-                }else{
-                    System.out.println(getManual());
-                }
-            }catch(Exception e){
-                System.out.println(e+"\n"+getManual());
-            }
-        }
-        if(range <= 100){
-            System.out.println("here");
-            printArr(cand);
+        }catch(Exception e){
+            System.out.println(e+"\n"+getManual());
         }
     }
 }
