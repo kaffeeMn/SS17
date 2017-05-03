@@ -3,9 +3,9 @@
 ======================================================================
 Die Eingabe muss nach dem Schema:
     java Sortierung <ZAHL>
-                           ^-- (defaults to [insert auf])
+                           ^-- (defaults to [merge rand])
     java Sortierung <ZAHL> [insert|merge] 
-                                          ^-- (defaults to [auf])
+                                          ^-- (defaults to [rand])
     java Sortierung <ZAHL> [insert|merge [auf|ab|rand]]
 erfolgen, ausserdem muss <Zahl> aus dem Wertebereich INTEGER kommen.
 ======================================================================

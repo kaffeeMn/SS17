@@ -59,7 +59,7 @@ public class Sortierung{
     }
     private static int[] downArr(int range){
         int[] result = new int[range];
-        for(int i=range; i>0; --i)  result[i-1] = i;
+        for(int i=range; i>0; --i)  result[range-i] = i;
         return result;
     }
     private static int[] randArr(int range){
@@ -92,7 +92,7 @@ public class Sortierung{
     }
     private static void merge(int[] arr, int[] tmpArr, int left, int q, int right){
         // coppying arr into tmpArr so arr can be rearanged lateron
-        for(int i=left; i<=right; ++i)   tmpArr[i] = arr[i];
+        for(int i=left; i<=q; ++i)   tmpArr[i] = arr[i];
         // initializing some acsess variables for tmpArr
         int tmpRight = right;
         int tmpLeft = left;
@@ -112,29 +112,37 @@ public class Sortierung{
     private static void printRunTime(long runtime){
         System.out.println("Feld sortiert.\nZeit benoetigt:\t" + runtime);
     }
+    private static void printArr(int[] arr){
+        for(int i=0; i<arr.length; ++i) System.out.print(arr[i]+",");
+        System.out.println();
+    }
     public static void main(String[] args){
         // checking for a maximum input of 3 parameter and a minum of 1
         int limit = args.length;
         assert(limit>0 && limit <4) : getManual();
+        int range = Integer.parseInt(args[0]);
+        int[] cand = new int[range];
         if(limit == 1){
             // defaults to insert auf
             try{
-                int range = Integer.parseInt(args[0]);
-                insertionSort(upArr(range));
+                cand = randArr(range);
+                mergeSort(cand);
             }catch(Exception e){
                 System.out.println(e+"\n"+getManual());
             }
         }else if(limit == 2){
-            // defaults to insertionSort (to handle part 1 of the exercise)
+            // defaults to mergeSort (to handle part 1 of the exercise)
             try{
                 String param = args[1];
-                int range = Integer.parseInt(args[0]);
                 if(Objects.equals(param, "auf")){
-                    insertionSort(upArr(range));
+                    cand = upArr(range);
+                    mergeSort(cand);
                 }else if(Objects.equals(param, "ab")){
-                    insertionSort(downArr(range));
+                    cand = downArr(range);
+                    mergeSort(cand);
                 }else if(Objects.equals(param, "rand")){
-                    insertionSort(randArr(range));
+                    cand = randArr(range);
+                    mergeSort(cand);
                 }else{
                     System.out.println(getManual());
                 }
@@ -146,28 +154,33 @@ public class Sortierung{
             try{
                 String param = args[2];
                 String method = args[1];
-                int range = Integer.parseInt(args[0]);
                 if(Objects.equals(param, "auf")){
                     if(Objects.equals(method, "insert")){
-                        insertionSort(upArr(range));
+                        cand = upArr(range);
+                        insertionSort(cand);
                     }else if(Objects.equals(method, "merge")){
-                        mergeSort(upArr(range));
+                        cand = upArr(range);
+                        mergeSort(cand);
                     }else{
                         System.out.println(getManual());
                     }
                 }else if(Objects.equals(param, "ab")){
                     if(Objects.equals(method, "insert")){
-                        insertionSort(downArr(range));
+                        cand = downArr(range);
+                        insertionSort(cand);
                     }else if(Objects.equals(method, "merge")){
-                        mergeSort(downArr(range));
+                        cand = downArr(range);
+                        mergeSort(cand);
                     }else{
                         System.out.println(getManual());
                     }
                 }else if(Objects.equals(param, "rand")){
                     if(Objects.equals(method, "insert")){
-                        insertionSort(randArr(range));
+                        cand = randArr(range);
+                        insertionSort(cand);
                     }else if(Objects.equals(method, "merge")){
-                        mergeSort(downArr(range));
+                        cand = randArr(range);
+                        mergeSort(cand);
                     }else{
                         System.out.println(getManual());
                     }
@@ -177,6 +190,10 @@ public class Sortierung{
             }catch(Exception e){
                 System.out.println(e+"\n"+getManual());
             }
+        }
+        if(range <= 100){
+            System.out.println("here");
+            printArr(cand);
         }
     }
 }
