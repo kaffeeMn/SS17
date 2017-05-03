@@ -23,14 +23,32 @@ A0:
 5.) Um die aktuelle Wochennummer in der Konsole auszugeben, kann man 
     den Befehl "date +%W" verwenden.
 
-6.) luftreibung, luftdichte und g sind globale Variabeln.
+6.) Globale Variablen sind:
+        luftreibung
+        g
+        luftdichte
 
-    luftdichte ist uninitialisiert also ist es im Block-Storage-Segment.
-    luftreibung ist initialisiert also ist es im Datensegment.
-    luftreibung und luftdichte sind in verschiedenen Segmenten,  weil 
-    luftreibung initialisiert wird und luftdichte nicht.
-    g ist initialisiert also ist es im Datensegment.
+        davon initialisiert:
+            luftreibung
+            g
 
-    v ist eine lokale Variabel und befindet sich im Stack Segment
 
-    Die Parmeter masse und flaeche der Funktion endgeschwindigkeit() sind lokal also befinden sie sich im Stack Segment.
+    Lokale Variablen sind:
+        v
+        parameter: masse, flaeche 
+            ^-- (für endgeschwindigkeit(int masse, int flaeche)) 
+
+
+    Funktionen sind:
+        endgeschwindigkeit
+
+
+    Demnach werden alle initialisierten globalen Variablen 
+    (luftreibung, g) im Datensegment und alle uninitialisierten 
+    (luftdichte) im Block-Storage-Segment gespeichert.
+    Alle lokalen Variablen (v, masse, flaeche) landen im Stack.
+    die Funktion endgeschwindigkeit(int masse, int flaeche)
+    wird im Textsegment gespeichert.
+    
+    luftreibung und luftdichte befinden sich in verschiedenen 
+    Segmenten, weil luftdichte nicht global initialisiert wurde.
