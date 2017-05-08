@@ -11,12 +11,20 @@ public class Sortierung{
         // beginning of the runtime
         tStart = System.currentTimeMillis();
         for(int j=1; j<arr.length; ++j){
+            // taking the value from the element at j
             int key = arr[j];
             int i = j-1;
             while ((i>=0) && (arr[i]>key)){
+                // runtime Sum t_k
+                // for each element at an lower indice than j, 
+                // we set its followup to its current value, as
+                // long as it's greater
                 arr[i+1] = arr[i];
                 --i;
             }
+            // at the end we still need to insert key at the position 
+            // where it fits in since its greater or equals the element 
+            // at i
             arr[i+1] = key;
         }
         // end of the runtime, assertions will not be counted
@@ -25,7 +33,7 @@ public class Sortierung{
         printRunTime(tEnd-tStart);
     }
     private static boolean isSorted(int[] arr){
-        // check for an sorted arra by comparing each field with its followup
+        // check for an sorted array by comparing each field with its followup
         int limit = arr.length;
         assert (limit > 0) : "The array, needs to consist of at least 1 INT.";
         for(int i = 0; i < limit-1; ++i){
@@ -53,6 +61,7 @@ public class Sortierung{
         // return empty String as dummy
         return "";
     }
+    // methods to initialize the arrays, not much to say here
     private static int[] upArr(int range){
         int[] result = new int[range];
         for(int i=0; i<range; ++i) result[i] = i;
@@ -92,36 +101,49 @@ public class Sortierung{
         }
     }
     private static void merge(int[] arr, int[] tmpArr, int left, int q, int right){
-        // coppying arr into tmpArr so arr can be rearanged lateron
         int tmpLeft = left;
         int tmpMid  = q+1;
         for(int i=left; i<=right; ++i){
+            // we assume tmpLeft and tmpMid are within their range
             if(tmpLeft <= q && tmpMid <= right){
+                // comparing values, like in any sortalgorithm
                 if(arr[tmpLeft] < arr[tmpMid]){
                     tmpArr[i] = arr[tmpLeft++];
                 }else{
                     tmpArr[i] = arr[tmpMid++];
                 }
+            // otherwise the array is filled with the remaining elements
             }else if(tmpLeft <= q){
                 tmpArr[i] = arr[tmpLeft++];
             }else{
                 tmpArr[i] = arr[tmpMid++];
             }
         }
+        // we still need to rewrite arr with the sorted tmpArray
         for(int i=left; i<=right; ++i) arr[i] = tmpArr[i];
     }
     private static void printRunTime(long runtime){
+        // printing the sucsessfull runtime, not much to say here
         System.out.println("Feld sortiert.\nZeit benoetigt:\t"+runtime+"ms");
     }
     private static void printArr(int[] arr){
+        // printing the array, not much to say here
         int limit = arr.length;
         System.out.print("[");
         for(int i=0; i<limit-1; ++i) System.out.print(arr[i]+",");
         System.out.println(arr[limit-1]+"]");
     }
     private static int[] handleInput(String[] args, int limit, int range, int[] cand){
+        /* @param args: original input
+         * @param limit: length of original input
+         * @param range: first number of input, defines the range of the array
+         * @param cand: empty array with the range of (param) range
+         * */
+        // method to parse general input
         switch(limit){
+            // depending on how many args are given, different operations will apply
             case 1:
+                // in case of just one argument, we default to mergeSort and randArr
                 try{
                     cand = randArr(range);
                     mergeSort(cand);
@@ -130,6 +152,7 @@ public class Sortierung{
                 }
                 break;
             case 2:
+                // in case of two arguments, we have to make further checks
                 try{
                     return handleDouble(args[1], range, cand);
                 }catch(Exception e){
@@ -137,6 +160,7 @@ public class Sortierung{
                 }
                 break;
             case 3:
+                // in case of three arguments, we have to make further checks
                 try{
                     return handleTriple(args[1], args[2], range, cand);
                 }catch(Exception e){
@@ -144,10 +168,18 @@ public class Sortierung{
                 }
                 break;
         }
+        // we will have to return cand, hence there are complications between switch
+        // cases and void.
         return cand;
     }
-    private static int[] handleDouble(String param, int range, int[] cand){
+    private static int[] handleDouble(String param, int range, int[] cand)throws Exception{
+        /* @param range: first number of input, defines the range of the array
+         * @param cand: empty array with the range of (param) range
+         * @param param: userinput(will be parsed)
+         * */
         switch(param){
+            // param can be either a key to the initialzation of the array (default rand)
+            // or the sortalgorithm (defaults merge)
             case "auf":
                 cand = upArr(range);
                 mergeSort(cand);
@@ -169,21 +201,31 @@ public class Sortierung{
                 insertionSort(cand);
                 break;
             default:
+                // in case someone submitted some nonesense
                 System.out.println(getManual());
                 break;
         }
+        // we will have to return cand, hence there are complications between switch
+        // cases and void.
         return cand;
     }
-    private static int[] handleTriple(String method, String param, int range, int[] cand){
+    private static int[] handleTriple(String method, String param, int range, int[] cand)throws Exception{
+        /* @param range: first number of input, defines the range of the array
+         * @param cand: empty array with the range of (param) range
+         * @param param: userinput(will be parsed)
+         * @param method: userinput(will be parsed)
+         * */
         switch(param){
+            // unlike in handleDouble the key arguments for initialization(param) and the
+            // searchalgorithm (method) are now seperated
+            // we start of with parsing param and look for the method afterwards
             case "auf":
+                cand = upArr(range);
                 switch(method){
                     case "insert":
-                        cand = upArr(range);
                         insertionSort(cand);
                         break;
                     case "merge":
-                        cand = upArr(range);
                         mergeSort(cand);
                         break;
                     default:
@@ -192,13 +234,12 @@ public class Sortierung{
                 }
                 break;
             case "ab":
+                cand = downArr(range);
                 switch(method){
                     case "insert":
-                        cand = downArr(range);
                         insertionSort(cand);
                         break;
                     case "merge":
-                        cand = downArr(range);
                         mergeSort(cand);
                         break;
                     default:
@@ -207,13 +248,12 @@ public class Sortierung{
                 }
                 break;
             case "rand":
+                cand = randArr(range);
                 switch(method){
                     case "insert":
-                        cand = randArr(range);
                         insertionSort(cand);
                         break;
                     case "merge":
-                        cand = randArr(range);
                         mergeSort(cand);
                         break;
                     default:
@@ -222,9 +262,12 @@ public class Sortierung{
                 }
                 break;
             default:
+                // in case someone submitted some nonesense
                 System.out.println(getManual());
                 break;
         }
+        // we will have to return cand, hence there are complications between switch
+        // cases and void.
         return cand;
     }
     public static void main(String[] args){
@@ -234,6 +277,9 @@ public class Sortierung{
         try{
             int range = Integer.parseInt(args[0]);
             int[] cand = new int[range];
+            // retrieving the sorted array by the handleInput method,
+            // which parses the input in args[1], args[3]
+            // and calls the mthods in demand
             cand = handleInput(args, limit, range, cand);
             if(range <= 100){
                 printArr(cand);
