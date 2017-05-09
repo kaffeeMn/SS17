@@ -1,13 +1,11 @@
 // TODO: System.gc() verwenden ...
 public class Sortieren{
-    // hardcoded constant of elements the array should be initialized with
-    private final int ARRNNUM = 1000;
 
     /* Aufgabe 1
      * */
     private static void bubbleSort(int[] arr){
         int n = arr.length;
-        for(int i=0: i<n; ++i){
+        for(int i=0; i<n; ++i){
             for(int j=n; j>i; --j){
                 if(arr[j-1]>arr[j]){
                     int tmp = arr[j];
@@ -33,7 +31,7 @@ public class Sortieren{
     }
     /* Aufgabe 2
      * */
-    private static void handler(float time, int[] arr, tmpLen){
+    private static void handler(float time, int[] arr, int tmpLen){
         float tStart, tEnd, runTime;
         // beginning of the runTime
         tStart = System.currentTimeMillis();
@@ -42,15 +40,14 @@ public class Sortieren{
         tEnd = System.currentTimeMillis();
         if(tEnd-tStart < time){
             tmpLen = arr.length;
-            downArr(tmplen*2, arr);
-            handler(time, arr, tmpArr);
+            downArr(tmpLen*2, arr);
+            handler(time, arr, tmpLen);
         }else{
-            binarySearch(tmpLen, time, arr.length);
+            binarySearch(tmpLen, time, arr.length, arr);
         }
     }
-    public void binarySearch(float bottom , float wanted, float right){
+    public static void binarySearch(int bottom , float wanted, int right, int[] arr){
         float tStart, tEnd, runTime;
-        int[] arr;
         downArr(right, arr);
         // beginning of the runTime
         tStart = System.currentTimeMillis();
@@ -60,8 +57,8 @@ public class Sortieren{
         runTime = tEnd-tStart;
         // Zwischenergebnis ausgeben lassen
         System.out.println("Feldgroesse: "+right+"\nZeit: "+runTime);
-        if!((Math.abs(runTime-wanted) <= 0.1f)){
-            float q = (bottom+right)/2;
+        if(!(Math.abs(runTime-wanted) <= 0.1f)){
+            int q = (bottom+right)/2;
             downArr(q, arr);
             // beginning of the runTime
             tStart = System.currentTimeMillis();
@@ -70,24 +67,24 @@ public class Sortieren{
             tEnd = System.currentTimeMillis();
             runTime = tEnd-tStart;
             if(wanted <= runTime) 
-                binarySearch(bottom, wanted, q);
+                binarySearch(bottom, wanted, q, arr);
             else
-                binarySearch(bottom, ++q, right);
+                binarySearch(bottom, ++q, right, arr);
         }else{
             System.out.println("done");
         }
     }
     public static void main(String[] args){
         int limit = args.length;
-        if(limit!=1)    System.out.println(getManual());
+        if(limit!=1)    System.out.println("too many arguments");
         else{
             try{
                 float time = Float.parseFloat(args[0]);
-                int[] arr;
-                downArr(ARRNNUM, arr);
+                int[] arr = new int[1];
+                downArr(1000, arr);
                 handler(time, arr, arr.length);
             }catch(Exception e){
-                e.printStacktrace();
+                e.printStackTrace();
                 System.out.println("EXCEPTION: " + e.getMessage());
             }
         }
