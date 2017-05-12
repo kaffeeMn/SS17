@@ -37,7 +37,7 @@ public class Sortieren{
         // end of runTime
         tEnd = System.currentTimeMillis();
         // dividing by 1000, since the input will be parsed in seconds
-        float runTime = (tEnd-tStart) / 1000;
+        float runTime = (tEnd-tStart) / 1000.0f;
         if(runTime < time){
             // the fieldlength will be needed when the recursion ends(binary search)
             tmpLen = arr.length;
@@ -48,7 +48,7 @@ public class Sortieren{
         }else{
             // in case it took longer, than the time variable
             // a binar search will be started with the two last fieldlengths
-            System.out.println("\nen tering binary search");
+            System.out.println("\nentering binary search");
             // binary search will be started at half the size of both field lengths
             binarySearch(tmpLen, (tmpLen+arr.length)/2, arr.length, arr, time);
         }
@@ -63,7 +63,7 @@ public class Sortieren{
         bubbleSort(arr);
         // end of runTime
         tEnd = System.currentTimeMillis();
-        float runTime = (tEnd-tStart)/1000;
+        float runTime = (tEnd-tStart)/ 1000.0f;
         // getting some information of what the algorithm is calculating
         System.out.println("Feldgroesse: "+mid+"\nZeit: "+runTime+"s");
         if(!(Math.abs(runTime-wanted) <= 0.1f)){
@@ -99,7 +99,7 @@ public class Sortieren{
                     // informing the user about the state of our programm
                     System.out.println("======================================================================");
                     System.out.println("initial time: " + time + "s\n\nentering presearch");
-                    handler(time, arr, arr.length);
+                    handler(time, arr, 0);
                 }else{
                     System.out.println("Don't expect me to solve time travel.");
                 }
