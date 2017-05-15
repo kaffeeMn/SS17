@@ -23,11 +23,9 @@ int main(int argc, char **argv){
             printf("Befehl: %s\nArgument: %s\n", &method, &args);
             if(strcmp(method,"ls") != 0 || strcmp(args, "-al") != 0){
                 printf("You did not type ls -al\n");
-                return 1;
             }else{
-                execlp(method, args);
+                execlp(method, args, ".");
             }
-
         }
     }else if(argc == 3){
         if(strcmp(argv[1],"ls") != 0 || strcmp(argv[2], "-al")){
