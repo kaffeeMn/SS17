@@ -15,7 +15,7 @@ public abstract class Simplex implements Distance{
         }
     }
     public abstract boolean validate();
-    public double permimeter(){
+    public double perimeter(){
         double abs = 0.0;
         for(int i=0; i<this.points.length; ++i){
             for(int j=i-1; j>0; --j){
