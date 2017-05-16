@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <pwd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <limits.h>
 #include <string.h>
 
@@ -18,20 +19,23 @@ int main(void){
 
     int newPid = 0;    
     int status = 0;
+    int rVal = 0;
 
     while(1){
         printf("%s@%s %s$ ", pwd->pw_name, hostname, path);
         scanf("%s %s", &method, &args);
-        if(strcmp(method,"ls") != 0 || strcmp(args, "-al") != 0){
-            printf("You did not type ls -al\n");
-            return 1;
-        }else{
+        if(strcmp(method,"ls") == 0){
             newPid = fork();
             if(newPid == 0){
-                execlp(method, args, ".");
+                rVal = execlp(method, args, ".");
+                if(rVal < 0){
+                    printf("passed illegal arguments\n");
+                }
             }else{
-                waitpid(newPid, &status, NULL);
+                waitpid(newPid, &status, 0);
             }
+        }else{
+            printf("passed illegal arguments\n");
         }
     }
     return 1;
