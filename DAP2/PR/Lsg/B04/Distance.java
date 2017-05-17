@@ -1,4 +1,3 @@
-public interface Distance<T>{
-    // euklid distance as default since the distance method is not neccessary generic
-    public double distance(<T> p1, <T> p2);
+public interface Distance{
+    public double distance(Point p1, Point p2);
 }

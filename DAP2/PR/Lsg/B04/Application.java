@@ -1,4 +1,4 @@
-public class Applicacation{
+public class Application{
 
     private static void printPerimeter(Triangle triangle){
         System.out.println(
@@ -8,28 +8,29 @@ public class Applicacation{
         );
     }
     private static Triangle randTriangle(){
-        else vz = 1;
-        Point[] randPoints = new Point[3];
-        recFillPoints(ranPoints, 0, ranPoints.length-1);
-        return Triangle(randPoints);
+        Point[] randPoints = recFillPoints(new Point[3], 0, 3);
+        return new Triangle(randPoints);
     }
-    private static void recFillPoints(Point[] points, int idx, int quant){
+    private static Point[] recFillPoints(Point[] points, int idx, int quant){
         if(idx == 0){ 
-            points[0] = Point(genRandDouble(), genRandDouble());
-            recFillPoints(pointsm, 1, quant);
-        }else if(idx <= quant){
-            Point tmpPoint = Point(genRandDouble(), genRandDouble());
+            points[0] = new Point(genRandDouble(), genRandDouble());
+            return recFillPoints(points, 1, quant);
+        }else if(idx < quant){
+            Point tmpPoint = new Point(genRandDouble(), genRandDouble());
             boolean valid = true;
-            for(int i=0; i<=idx){
-                if(Traingle.sameVals(tmpPoint, points[i])) valid=false;
+            for(int i=0; i<idx; ++i){
+                if(Triangle.sameVals(tmpPoint, points[i])){
+                    valid &= false;
+                }
             }
             if(valid){
-                point[idx++] = tmpPoint;
-                recFillPoints(points, idx, quant);
+                points[idx++] = tmpPoint;
+                return recFillPoints(points, idx, quant);
             }else{
-                recFillPoints(points, idx, quant);
+                return recFillPoints(points, idx, quant);
             }
         }
+        return points;
     }
     private static double genRandDouble(){
         java.util.Random numberGenerator = new java.util.Random();
@@ -39,14 +40,23 @@ public class Applicacation{
     }
     public static void main(String[] args){
         try{
-            argsLen = args.length;
-            double[] params = new double[argsLen]
+            int argsLen = args.length;
+            double[] params = new double[argsLen];
+            Point[] points = new Point[argsLen/2];
+            int j = 0;
             for(int i=0; i<argsLen; ++i){
                 params[i] = Double.parseDouble(args[i]);
+                if(i%2 != 0){
+                    double[] tmpParams = {params[i-1], params[i]};
+                    points[j] = new Point(tmpParams);
+                    ++j;
+                }
             }
-            Triangle triangle;
             if(args.length == 6){
-                triangle = Triangle(params);
+                //for(Point p : points){
+                //    p.print();
+                //}
+                Triangle triangle = new Triangle(points);
                 if(triangle.validate()){
                     printPerimeter(triangle);
                 }else{
@@ -54,7 +64,7 @@ public class Applicacation{
                 }
             }else{
                 System.out.println("Not 6 coordinates submitted. Generating random triangle.");
-                triangle = randTriangle();
+                Triangle triangle = randTriangle();
                 printPerimeter(triangle);
             }
         }catch(Exception e){

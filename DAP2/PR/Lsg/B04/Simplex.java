@@ -1,15 +1,16 @@
 public abstract class Simplex{
-    private int minPoints;
-    private Point[] points;
+    protected int minPoints;
+    protected Point[] points;
 
     public Simplex(Point... points){
         if(points.length != 0){
+            this.points = new Point[points.length];
             int i = 0;
             for(Point p : points){
                 this.points[i] = p;
                 ++i;
             }
-            this.minPoints = i+1;
+            this.minPoints = i;
         }else{
             throw new IllegalArgumentException("No arguments passed.");
         }
@@ -18,11 +19,9 @@ public abstract class Simplex{
     public double perimeter(){
         double abs = 0.0;
         for(int i=0; i<this.points.length; ++i){
-            for(int j=i-1; j>0; --j){
-                abs += EuclidDistance.distance(this.points[i], this.points[j]);
-            }
+            EuclidDistance eDist = new EuclidDistance();
             for(int j=i+1; j<this.points.length; ++j){
-                abs += EuclidDistance.distance(this.points[i], this.points[j]);
+                abs += eDist.distance(this.points[i], this.points[j]);
             }
         }
         return abs;
