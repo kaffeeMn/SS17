@@ -1,4 +1,4 @@
-public abstract class Simplex implements Distance{
+public abstract class Simplex{
     private int minPoints;
     private Point[] points;
 
@@ -19,10 +19,10 @@ public abstract class Simplex implements Distance{
         double abs = 0.0;
         for(int i=0; i<this.points.length; ++i){
             for(int j=i-1; j>0; --j){
-                abs += distance(this.points[i], this.points[j]);
+                abs += EuclidDistance.distance(this.points[i], this.points[j]);
             }
             for(int j=i+1; j<this.points.length; ++j){
-                abs += distance(this.points[i], this.points[j]);
+                abs += EuclidDistance.distance(this.points[i], this.points[j]);
             }
         }
         return abs;
