@@ -15,10 +15,10 @@ public class ConvexHull{
         public Point getB(){return b;}
         private void printAll(){ a.print(); b.print();}
     }
-    private Set<Point>          pointsSet;
-    private Set<Tupel>          allPoints;
+    private HashSet<Point>      pointsSet;
+    private HashSet<Tupel>      allPoints;
     private LinkedList<Tupel>   hull;
-    //private Set<Set<Point>>                 powSet;
+    //private Set<Set<Point>>     powSet;
 
 
     public ConvexHull(Point[] points){
@@ -28,12 +28,13 @@ public class ConvexHull{
         initHull();
     }
     private void initSet(Point[] points){
-        Set<Point> set1 = new HashSet<Point>();
-        Set<Tupel> set2 = new HashSet<Tupel>();
+        HashSet<Point> set1 = new HashSet<Point>();
+        HashSet<Tupel> set2 = new HashSet<Tupel>();
         for(int i=0; i<points.length; ++i){
             set1.add(points[i]);
             for(int j=i+1; j<points.length; ++j){
                 set2.add(new Tupel(points[i], points[j]));
+                set2.add(new Tupel(points[j], points[i]));
             }
         }
         this.pointsSet = set1;
@@ -59,13 +60,21 @@ public class ConvexHull{
         return cross(p, t) > 0;
     }
     private double cross(Point p, Tupel t){
+        double x0, x1, x2, y0, y1, y2;
         Point a = t.getA();
         Point b = t.getB();
-        return ((b.get(0) - a.get(0))*(p.get(1) - a.get(1)) - (b.get(1) - a.get(1))*(p.get(0) - a.get(0)));
+        x0 = a.get(0);
+        y0 = a.get(1);
+        x1 = b.get(0);
+        y1 = b.get(1);
+        x2 = p.get(0);
+        y2 = p.get(1);
+        return ((x1 - x0)*(y2 - y0)) - ((x2 - x0)*(y1 - y0));
     }
     public void printAll(){
         for(Tupel cand : this.hull){
             cand.printAll();
+            System.out.println("--------------");
         }
     }
     //private Set<Set<Point>> initPowSet(Set<Point> tmpSet){
