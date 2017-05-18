@@ -36,7 +36,7 @@ public class Application{
         java.util.Random numberGenerator = new java.util.Random();
         double vz = 1;
         if(numberGenerator.nextBoolean()) vz = -1;
-        return vz * numberGenerator.nextDouble() * 1000;
+        return vz * numberGenerator.nextDouble() * 100;
     }
     public static void main(String[] args){
         try{

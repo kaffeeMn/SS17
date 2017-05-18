@@ -27,6 +27,72 @@ public class ConvexHull{
         //this.powSet      = initPowSet(dummy);
         initHull();
     }
+    public ConvexHull(Point[] points, int i){
+        //Set<Point> dummy = this.pointsSet;
+        //this.powSet      = initPowSet(dummy);
+        initPointSet(points);
+        System.out.println("These are the points:");
+        for(Point p : this.pointsSet){
+            p.print();
+        }
+        Point p1, p2, p3;
+        Tupel t1, t2, t3;
+        p1 = new Point(10.0,10.0);
+        p2 = new Point(10.0,100.0);
+        p3 = new Point(100.0,10.0);
+        t1 = new Tupel(p1,p2);
+        t2 = new Tupel(p2,p3);
+        t3 = new Tupel(p3,p1);
+        HashSet<Tupel> set = new HashSet<Tupel>();
+        set.add(t1);
+        set.add(t2);
+        set.add(t3);
+        this.allPoints = set;
+        System.out.println("These are the tuples:");
+        for(Tupel t : this.allPoints){
+            t.printAll();
+            System.out.println("---------------------");
+        }
+        hullBySort();
+        System.out.println("result ");
+        for(Point p : this.pointsSet){
+            p.print();
+        }
+    }
+    public void hullBySort(){
+        boolean valid;
+        HashSet<Point> list = new HashSet<Point>();
+        for(Point p : this.pointsSet){
+            valid = true;
+            for(Tupel t : this.allPoints){
+                if(leftToLine(p, t)){
+                    valid &= false;
+                }
+            }
+            if(valid){
+                list.add(p);
+            }
+        }
+        this.pointsSet = list;
+    }
+    public void initAllPoints(Point[] points){
+        HashSet<Tupel> set2 = new HashSet<Tupel>();
+        for(int i=0; i<points.length; ++i){
+            for(int j=i+1; j<points.length; ++j){
+                set2.add(new Tupel(points[i], points[j]));
+                set2.add(new Tupel(points[j], points[i]));
+            }
+        }
+        System.out.println("\n");
+        this.allPoints = set2;
+    }
+    private void initPointSet(Point[] points){
+        HashSet<Point> set1 = new HashSet<Point>();
+        for(int i=0; i<points.length; ++i){
+            set1.add(points[i]);
+        }
+        this.pointsSet = set1;
+    }
     private void initSet(Point[] points){
         HashSet<Point> set1 = new HashSet<Point>();
         HashSet<Tupel> set2 = new HashSet<Tupel>();
