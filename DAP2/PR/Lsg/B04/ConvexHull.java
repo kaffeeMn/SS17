@@ -71,12 +71,57 @@ public class ConvexHull{
         y2 = p.get(1);
         return ((x1 - x0)*(y2 - y0)) - ((x2 - x0)*(y1 - y0));
     }
+    public static void print(LinkedList<Tupel> list){
+        for(Tupel cand : list){
+            cand.printAll();
+            System.out.println("--------------");
+        }
+    }
     public void printAll(){
         for(Tupel cand : this.hull){
             cand.printAll();
             System.out.println("--------------");
         }
     }
+    //public static LinkedList<Tupel> simpleConvex(Point[] param){
+    //    HashSet<Point> set = new HashSet<Point>();
+    //    for(int i=0; i<param.length; ++i){
+    //        for(int j=i+1; j<param.length; ++j){
+    //            set.add(new Tupel(param[i], param[j]));
+    //            set.add(new Tupel(param[j], param[i]));
+    //        }
+    //    }
+    //    boolean valid;
+    //    LinkedList<Tupel> list = new LinkedList<Tupel>();
+    //    for(Tupel t : set){
+    //        valid = true;
+    //        for(Point p : param){
+    //            if(leftToLine(p, t)){
+    //                valid &= false;
+    //            }
+    //        }
+    //        if(valid){
+    //            list.add(t);
+    //        }
+    //    }
+    //    return list;
+    //}
+    //public static LinkedList<Tupel> simpleConvex(Point[] param, LinkedList<Tupel> corners){
+    //    boolean valid;
+    //    LinkedList<Tupel> list = new LinkedList<Tupel>();
+    //    for(Tupel t : corners){
+    //        valid = true;
+    //        for(Point p : param){
+    //            if(leftToLine(p, t)){
+    //                valid &= false;
+    //            }
+    //        }
+    //        if(valid){
+    //            list.add(t);
+    //        }
+    //    }
+    //    return list;
+    //}
     //private Set<Set<Point>> initPowSet(Set<Point> tmpSet){
     //    Set<Set<Point>> result = new Set<Set<Point>>();
     //    if(tmpSet.isEmpty()){

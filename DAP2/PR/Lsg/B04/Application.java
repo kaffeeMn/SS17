@@ -11,7 +11,7 @@ public class Application{
         Point[] randPoints = recFillPoints(new Point[3], 0, 3);
         return new Triangle(randPoints);
     }
-    private static Point[] recFillPoints(Point[] points, int idx, int quant){
+    public static Point[] recFillPoints(Point[] points, int idx, int quant){
         if(idx == 0){ 
             points[0] = new Point(genRandDouble(), genRandDouble());
             return recFillPoints(points, 1, quant);
