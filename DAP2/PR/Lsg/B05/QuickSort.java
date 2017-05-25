@@ -18,7 +18,7 @@ public class QuickSort{
                     getResults(new Merge(range, length));
                     break;
                 case "bubble":
-                    getResults(new Quick(range, length));
+                    getResults(new Bubble(range, length));
                     break;
                 default:
                     System.out.format("Unknown algorithm:\t%1$s.\n", s);
