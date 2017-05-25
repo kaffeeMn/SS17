@@ -1,7 +1,7 @@
 public interface Solvable{
     // getter needed
-    public int[] getInitialArr();
-    public int[] getSolvedArr();
+    public String getStrInitialArr();
+    public String getStrSolvedArr();
     public float getRunTime();
     public String getCorrectOutput();
     public String getName();

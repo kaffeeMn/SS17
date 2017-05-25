@@ -4,8 +4,8 @@ public class QuickSort{
 
     private static void getResults(Algorithm a){
         System.out.format(
-            "Algorithm:%1$s\nInitial array:\t%2$s\nSolved array:\t%3$s\nRuntime:\t%4$f\nCorrectness:\t%5\n"
-            , a.getName(), a.getInitialArr(), a.getSolvedArr(), a.getRunTime(), a.getCorrectOutput()
+            "Algorithm:\t%1$s\nInitial array:\t%2$s\nSolved array:\t%3$s\nRuntime:\t%4$f ms\nCorrectness:\t%5$s\n\n"
+            , a.getName(), a.getStrInitialArr(), a.getStrSolvedArr(), a.getRunTime(), a.getCorrectOutput()
         );
     }
     private static void runAlgorithms(int range, int length, String[] algoList){
@@ -42,7 +42,7 @@ public class QuickSort{
         try{
             System.out.println(message);
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String[] input = reader.readLine().split(" ");
+            String[] input = reader.readLine().split(" ", 2);
             task(input[0], input[1]);
         }catch(Exception e){
             handleException(e);
@@ -55,7 +55,7 @@ public class QuickSort{
     }
     public static void main(String[] args){
         if(args.length < 2){
-             requestInput("Not enough Input submitted.\n please pass an Integer for the length and another for the range.");
+             requestInput("Not enough Input submitted.\nplease pass an Integer for the length and another for the range.");
         }else{
             task(args[0], args[1]);
         }

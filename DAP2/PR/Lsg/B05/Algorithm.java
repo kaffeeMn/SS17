@@ -13,11 +13,12 @@ public class Algorithm implements Solvable{
         RandArr rA = new RandArr(range, length);
         // initial random array
         this.initialArr = rA.getIntArr();
+        int[] copy = makeCopy(this.initialArr);
         float tStart, tEnd;
         // messuring runTime
         tStart = System.currentTimeMillis();
         // solved array via the the algorithm
-        this.solvedArr  = algorithm(rA.getIntArr());
+        this.solvedArr  = algorithm(copy);
         tEnd = System.currentTimeMillis();
         this.runTime = tEnd - tStart;
         // checking for correctness
@@ -28,11 +29,26 @@ public class Algorithm implements Solvable{
         this(range, length);
         this.name = name;
     }
+    private static int[] makeCopy(int[] arr){
+        // apperently Objects can work like pointers ...
+        // ugly but neccessary
+        int[] copy = new int[arr.length];
+        for(int i=0; i<arr.length; ++i)    copy[i] = arr[i];
+        return copy;
+    }
+    private static String arrToString(int[] arr){
+        if(arr != null){
+            String s = "[" + arr[0];
+            for(int i : arr)    s += ", " + i;
+            return s + "]";
+        }
+        return "[]";
+    }
     // getter requested from interface
     @Override
-    public int[] getInitialArr(){return this.initialArr;}
+    public String getStrInitialArr(){return arrToString(this.initialArr);}
     @Override
-    public int[] getSolvedArr(){return this.solvedArr;}
+    public String getStrSolvedArr(){return arrToString(this.solvedArr);}
     @Override
     public float getRunTime(){return this.runTime;}
     @Override
