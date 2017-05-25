@@ -33,6 +33,18 @@ public class QuickSort{
             runAlgorithms(range, length, algoList);
         }catch(Exception e){
             handleException(e);
+            requestInput("Incorrect Input.\nPlease try again.");
+        }
+    }
+    public static void requestInput(String message){
+        try{
+            System.out.println(message);
+            BufferedReader reader = new BufferedReader(InputStreamReader(System.in));
+            String[] input = reader.readLine().split(" ");
+            task(input[0], input[1]);
+        }catch(Exception e){
+            handleException(e);
+            readLine("Incorrect Input.\nPlease try again.");
         }
     }
     private static void handleException(Exception e){
