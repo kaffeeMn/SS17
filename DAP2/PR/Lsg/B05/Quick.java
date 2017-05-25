@@ -1,8 +1,8 @@
 public class Quick extends Algorithm{
     
     public Quick(int range, int length){
-        super(range, length, "Quick-Sort")
+        super(range, length, "Quick-Sort");
     }
     @Override
-    public int[] algorithm(int[] arr){}
+    public int[] algorithm(int[] arr){return arr;}
 }

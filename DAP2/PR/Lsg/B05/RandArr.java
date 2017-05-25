@@ -11,26 +11,26 @@ public class RandArr{
     public RandArr(int range, int length){
         this.randomFactory = new Random();
         this.doubleArr  = initDoubleArr(range, length);
-        this.intArr     = initIntArr(this.doubleArr);
+        this.intArr     = initIntArr();
     }
-    private static double[] initDoubleArr(int range, int length){
-        double[] tmpArr = new double[length]
+    private double[] initDoubleArr(int range, int length){
+        double[] tmpArr = new double[length];
         for(int i=0; i<length; ++i)     tmpArr[i] = randDouble(range);
         return tmpArr;
     }
-    private int[] initIntArr(double[] arr){
-        int[] tmpArr = new int[arr.length];
-        for(int i=0; i<arr.length; ++i)     tmpArr[i] = (int) arr[i];
+    private int[] initIntArr(){
+        int[] tmpArr = new int[this.doubleArr.length];
+        for(int i=0; i<this.doubleArr.length; ++i)     tmpArr[i] = (int) this.doubleArr[i];
         return tmpArr;
     }
     // getter
-    public double[] gertDoubleArr(){return this.doubleArr;}
-    public int[] gertIntArr(){return this.intArr;}
+    public double[] getDoubleArr(){return this.doubleArr;}
+    public int[] getIntArr(){return this.intArr;}
     public double randDouble(int range){
         int vz = (this.randomFactory.nextDouble() < 0.5) ? 1 : -1;
         return this.randomFactory.nextDouble() * vz * range;
     }
-    public int randInt(){
-        return (int) randDouble();
+    public int randInt(int range){
+        return (int) randDouble(range);
     }
 }

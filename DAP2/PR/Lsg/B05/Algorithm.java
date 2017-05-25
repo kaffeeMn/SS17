@@ -7,7 +7,7 @@ public class Algorithm implements Solvable{
     private final int[]     solvedArr;
     private final float     runTime;
     private final boolean   correct;
-    private final String    name;
+    private String    name;
 
     public Algorithm(int range, int length){
         RandArr rA = new RandArr(range, length);
@@ -19,7 +19,7 @@ public class Algorithm implements Solvable{
         // solved array via the the algorithm
         this.solvedArr  = algorithm(rA.getIntArr());
         tEnd = System.currentTimeMillis();
-        this.runTime = tEnd - TStart;
+        this.runTime = tEnd - tStart;
         // checking for correctness
         this.correct = isSolved(this.solvedArr);
     }
