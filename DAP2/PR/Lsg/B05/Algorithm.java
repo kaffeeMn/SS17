@@ -15,10 +15,10 @@ public class Algorithm implements Solvable{
         this.initialArr = rA.getIntArr();
         float tStart, tEnd;
         // messuring runTime
-        tStart = Sysem.out.currentMillis();
+        tStart = System.currentTimeMillis();
         // solved array via the the algorithm
         this.solvedArr  = algorithm(rA.getIntArr());
-        tEnd = Sysem.out.currentMillis();
+        tEnd = System.currentTimeMillis();
         this.runTime = tEnd - TStart;
         // checking for correctness
         this.correct = isSolved(this.solvedArr);
