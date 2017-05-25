@@ -36,10 +36,10 @@ public class Algorithm implements Solvable{
         for(int i=0; i<arr.length; ++i)    copy[i] = arr[i];
         return copy;
     }
-    private static String arrToString(int[] arr){
+    public static String arrToString(int[] arr){
         if(arr != null){
             String s = "[" + arr[0];
-            for(int i : arr)    s += ", " + i;
+            for(int i=0; i<arr.length; ++i)    s += ", " + arr[i];
             return s + "]";
         }
         return "[]";
