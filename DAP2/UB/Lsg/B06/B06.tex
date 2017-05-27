@@ -1,0 +1,95 @@
+\documentclass{article}
+\author{Springenberg, 177792}
+\title{
+    DAP2 UB6\\
+    Gr. , Briefkasten
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+% \Theta \Omega \omega
+\newcommand{\tab}{\null \qquad}
+\newcommand{\lA}{$\leftarrow$}
+\begin{document}
+\maketitle
+\subsection{Gierige Algorithmen}
+\subsubsection\
+Gegeben ist:\\
+$
+$Distanz in Kilometern: $l\\
+$Anzahl der maximalen Kilometer pro Tag: $k\\
+$Index der Raststaette: $i, 1 \leq i \leq n\\
+$Array, der jedem i eine Anzahl von kilometern zuordnet: $A\\
+A[n] = l\\
+0 < A[i+1] - A[i] \leq k\\
+$Damit ist A aufsteigend sortiert.$\\
+$
+\\
+Dem Algorithmus wird A uebergeben und es soll ein Array B zurueck gegeben werden
+, sodass $|B|$ minimal ist.\\
+Gesucht wird also immer eine Raststaette die A[$i_n$] moeglichst weit weg ist,
+wobei von ihr aus wieder eine Rasstaette in der Distanz $k$ erreichbar sein muss.\\
+Wir wissen, dass gilt:\\
+$0 < A[i+1] - A[i] \leq k\\$
+Damit koennen wir nach dem Index $i_x$, bei dem der Abstand von A[$i_0$] zu A[$i_0$] moeglichst
+nahe kleiner gleich k ist, zuchen.\\
+Diesen erhalten wir, an der stelle i mit:\\
+A[i] $\leq$ k and A[i+1] > k\\
+da A aufsteigend sortiert ist. Anshliessend erhoehen wir k um A[i], da die Distanz immer zum
+Startpunkt gemessen wurde.\\
+\\
+Minimize(A)\\
+\tab k \lA VALUE\\
+\tab tmpK \lA k\\
+\tab counter \lA 2\\
+\tab for i \lA 1 to length[A] - 1 do\\
+\tab \tab if A[i] $\leq$ k and A[i+1] > k then\\
+\tab \tab \tab counter \lA counter + 1\\
+\tab \tab \tab tmpK \lA k + A[i]\\
+\tab B \lA B[1 ... counter]\\
+\tab tmpK \lA k\\
+\tab for i \lA 1 to length[A] - 1 do\\
+\tab \tab if A[i] $\leq$ k and A[i+1] > k then\\
+\tab \tab \tab B[i] \lA A[i]\\
+\tab \tab \tab tmpK \lA k + A[i]\\
+\tab B[counter] \lA A[length[A]]\\
+\tab return B\\
+
+\newpage
+\subsection{Gierige Algorithmen}
+\subsubsection\
+Gegeben ist:\\
+Simon kann sich nur eine Muenze pro Monat kaufen.\\
+Array mit Muenzen:\\
+A[1 ... n]\\
+Array mit Faktoren fuer die Muenzen:\\
+P[1 ... n]\\
+Startpreis aller Muenzen:\\
+20 (Euro)\\
+Preissteigung je Monat:\\
+A[i] \lA A[i] * P[i]\\
+\\
+Ferner gilt fuer den Preis p der Muenze am Index i nach m Monaten:\\
+p = 20 * P[i$]^{m-1}$\\
+\\
+\\
+Gesucht wird nun in Abhaengigkeit von P der minimale Gesamtbetrag, den Simon ausgeben muss,
+wenn er sich pro Monat eine Muenze kauft.\\
+Dazu muss zunachst ein Array B mit den Indice von A ueber ihren Wert in P aufsteigend sortiert
+angelegt werden.\\
+Anschliessend wird A durchgelaufen und von der Gleichung:\\
+p = 20 * P[i$]^{m-1}$\\
+gemacht und fuer jeden wert in A nach der durch B vorgegebenen Reihenfolge 
+der Gesamtbetrag aufaddiert.\\
+\\
+\\
+MinMoney(P)\\
+\tab new Array B [n ... length[P]]\\
+\tab B = mergeSort(B)\\
+\tab endBetrag \lA 0\\
+\tab monthCounter \lA 1\\
+\tab for i \lA 1 to length(B) do\\
+\tab \tab endBetrag \lA endBetrag + (20 * P[i$]^{monthCounter-1}$)\\
+\tab \tab monthCounter \lA monthCounter + 1\\
+\tab return endBetrag\\
+\end{document}
