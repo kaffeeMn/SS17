@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  28 MAY 2017 10:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  28 MAY 2017 10:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -99,144 +99,144 @@ LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 ) (./B06.aux)
 \openout1 = `B06.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Try loading font information for U+msa on input line 15.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 14.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 15.
 
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 17--57
+Underfull \hbox (badness 10000) in paragraph at lines 18--58
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--57
+Underfull \hbox (badness 10000) in paragraph at lines 18--58
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--57
+Underfull \hbox (badness 10000) in paragraph at lines 18--58
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 58--81
+Underfull \hbox (badness 10000) in paragraph at lines 59--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--81
+Underfull \hbox (badness 10000) in paragraph at lines 59--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--81
+Underfull \hbox (badness 10000) in paragraph at lines 59--82
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--115
+Underfull \hbox (badness 10000) in paragraph at lines 83--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--115
+Underfull \hbox (badness 10000) in paragraph at lines 83--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--115
+Underfull \hbox (badness 10000) in paragraph at lines 83--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--115
+Underfull \hbox (badness 10000) in paragraph at lines 83--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--115
+Underfull \hbox (badness 10000) in paragraph at lines 83--116
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--154
+Underfull \hbox (badness 10000) in paragraph at lines 120--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--170
+Underfull \hbox (badness 10000) in paragraph at lines 156--171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--170
+Underfull \hbox (badness 10000) in paragraph at lines 156--171
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 171--191
+Underfull \hbox (badness 10000) in paragraph at lines 172--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--191
+Underfull \hbox (badness 10000) in paragraph at lines 172--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--191
+Underfull \hbox (badness 10000) in paragraph at lines 172--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--191
+Underfull \hbox (badness 10000) in paragraph at lines 172--192
 
  []
 
@@ -259,7 +259,7 @@ blic/cm/dpi600/cmr10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi60
 0/cmbx10.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600
 pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </usr/sha
 re/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17.pk>
-Output written on B06.pdf (5 pages, 63390 bytes).
+Output written on B06.pdf (5 pages, 63501 bytes).
 PDF statistics:
  251 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream
