@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  27 MAY 2017 21:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  28 MAY 2017 10:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -140,58 +140,129 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--57
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 58--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+Underfull \hbox (badness 10000) in paragraph at lines 58--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+Underfull \hbox (badness 10000) in paragraph at lines 58--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+Underfull \hbox (badness 10000) in paragraph at lines 82--115
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+Underfull \hbox (badness 10000) in paragraph at lines 82--115
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--95
+Underfull \hbox (badness 10000) in paragraph at lines 82--115
 
  []
 
-[3] (./B06.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--115
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--115
+
+ []
+
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--170
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--170
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 171--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--191
+
+ []
+
+[5] (./B06.aux) ) 
 Here is how much of TeX's memory you used:
  1295 strings out of 493013
  14252 string characters out of 6139317
- 68416 words of memory out of 5000000
+ 69435 words of memory out of 5000000
  4863 multiletter control sequences out of 15000+600000
  12122 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  27i,6n,26p,219b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
  </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy7
-.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </usr/sha
-re/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmmi7.pk> </usr/share/texmf-dist
-/fonts/pk/ljfour/public/cm/dpi600/cmsy10.pk> </usr/share/texmf-dist/fonts/pk/lj
-four/public/cm/dpi600/cmmi10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/
-cm/dpi600/cmr10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmb
-x10.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> <
-/usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </usr/share/te
-xmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17.pk>
-Output written on B06.pdf (3 pages, 45069 bytes).
+.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm
+10.600pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </us
+r/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmmi7.pk> </usr/share/texmf
+-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy10.pk> </usr/share/texmf-dist/fonts/
+pk/ljfour/public/cm/dpi600/cmmi10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/pu
+blic/cm/dpi600/cmr10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi60
+0/cmbx10.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600
+pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </usr/sha
+re/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17.pk>
+Output written on B06.pdf (5 pages, 63390 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 251 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,8 +1,8 @@
 \documentclass{article}
-\author{Springenberg, 177792}
+\author{Max Springenberg, 177792}
 \title{
     DAP2 UB6\\
-    Gr. , Briefkasten
+    Anja Rey, Gr.23 , Briefkasten 22
 }
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -25,35 +25,93 @@ A[n] = l\\
 $Damit ist A aufsteigend sortiert.$\\
 $
 \\
-Dem Algorithmus wird A uebergeben und es soll ein Array B zurueck gegeben werden
-, sodass $|B|$ minimal ist.\\
+Dem Algorithmus wird A uebergeben und es soll ein Array B zurueck gegeben werden, 
+sodass $|B|$ minimal ist.\\
 Gesucht wird also immer eine Raststaette die A[$i_n$] moeglichst weit weg ist,
 wobei von ihr aus wieder eine Rasstaette in der Distanz $k$ erreichbar sein muss.\\
 Wir wissen, dass gilt:\\
 $0 < A[i+1] - A[i] \leq k\\$
 Damit koennen wir nach dem Index $i_x$, bei dem der Abstand von A[$i_0$] zu A[$i_0$] moeglichst
-nahe kleiner gleich k ist, zuchen.\\
+nahe kleiner gleich k ist, suchen.\\
 Diesen erhalten wir, an der stelle i mit:\\
-A[i] $\leq$ k and A[i+1] > k\\
-da A aufsteigend sortiert ist. Anshliessend erhoehen wir k um A[i], da die Distanz immer zum
+A[i] $\leq$ k and A[i+1] $>$ k\\
+da A aufsteigend sortiert ist. Anschliessend erhoehen wir k um A[i], da die Distanz immer zum
 Startpunkt gemessen wurde.\\
 \\
 Minimize(A)\\
-\tab k \lA VALUE\\
-\tab tmpK \lA k\\
-\tab counter \lA 2\\
-\tab for i \lA 1 to length[A] - 1 do\\
-\tab \tab if A[i] $\leq$ k and A[i+1] > k then\\
-\tab \tab \tab counter \lA counter + 1\\
-\tab \tab \tab tmpK \lA k + A[i]\\
-\tab B \lA B[1 ... counter]\\
-\tab tmpK \lA k\\
-\tab for i \lA 1 to length[A] - 1 do\\
-\tab \tab if A[i] $\leq$ k and A[i+1] > k then\\
-\tab \tab \tab B[i] \lA A[i]\\
-\tab \tab \tab tmpK \lA k + A[i]\\
-\tab B[counter] \lA A[length[A]]\\
-\tab return B\\
+1 \tab k \lA VALUE\\
+2 \tab tmpK \lA k\\
+3 \tab counter \lA 2\\
+4 \tab for i \lA 1 to length[A] - 1 do\\
+5 \tab \tab if A[i] $\leq$ k and A[i+1] $>$ k then\\
+6 \tab \tab \tab counter \lA counter + 1\\
+7 \tab \tab \tab tmpK \lA k + A[i]\\
+8 \tab new Array B[1 ... counter]\\
+9 \tab tmpK \lA k\\
+10\tab for i \lA 1 to length[A] - 1 do\\
+11\tab \tab if A[i] $\leq$ k and A[i+1] $>$ k then\\
+12\tab \tab \tab B[i] \lA A[i]\\
+13\tab \tab \tab tmpK \lA k + A[i]\\
+14\tab B[counter] \lA A[length[A]]\\
+15\tab return B\\
+\subsubsection\
+Operationen nach lines geordnet:\\
+$
+1-3: \Theta(3)\\
+\\
+ab\ 4: \Theta(length[A1] -1 = n)\\
+5: \Theta(1)\\
+6-7: \Theta(2)\\
+\\
+8-9: \Theta(2)\\
+\\
+ab 10: \Theta(length[A] -1 = n)\\
+11: \Theta(1)\\
+12-13: \Theta(2)\\
+\\
+14-15 : \Theta(2)\\
+$
+\\
+\\
+Daraus ergibt sich fuer Die Laufzeit im "Worst-Case":\\
+$
+3 + n*(1+2) + 2 + n*(1+2) + 2\\
+= 7 + 6n \in O(n), fuer\ c = 6\\
+$
+\subsubsection\
+Wird betrachten jeweils den Abstand h von A[n] zu A[i+n], $n > 0, i < length[A]$\\
+\\
+Als Aussage nehmen wir, dass fuer alle A[i] ein A[i+n] mit A[i+n] $\leq$ k und A[i+n+1] $>$ k existiert, sodass
+es keinen Abstand h $\leq$ k gibt, der naeher an k liegt, solange es sich nicht um die letzte Raststaette (das Ziel)
+handelt.\\
+\\
+$
+I.A.\\
+n = 1\\
+\\
+A[n] = h_n\\
+A[n+i] = h_{n+i}\\
+$Es gilt:\\$
+h_n < h_{n+i}\\
+h = h_{n+i} - h_n\\
+\\
+$Fallunterschiedung:\\$
+I\ A[n+i+1] - A[n] > k:\\
+\tab $es gilt:\\$
+\tab A[n+i+m] - A[n] \geq A[n+i+1] - A[n] > k, m > i\\
+II$ sonst:\\
+\tab i wird erhoeht\\
+im Falle der letzten Rastaette gaebe es kein $A[n+i+1] - A[n] > k$ mehr und der letzte Wert des Arrays wird 
+uebernommen.\\
+Fuer n = 1 gibt es damit mindestens eine Rastaette (das Ziel), oder eine optimale vor dem Ziel.\\
+\\
+$I.V.$\\
+Die Aussage gelte fuer $n \in \mathbb{N}$ beliebig, aber fest.\\
+\\
+$I.S.\\
+n \rightarrow n + 1$\\
+Da das Problem auf n + 1 zu n kompatibel ist gilt auch hier die I.V.\\
+Damit ist der Algorithmus optimal.\\
 
 \newpage
 \subsection{Gierige Algorithmen}
@@ -84,12 +142,50 @@ der Gesamtbetrag aufaddiert.\\
 \\
 \\
 MinMoney(P)\\
-\tab new Array B [n ... length[P]]\\
-\tab B = mergeSort(B)\\
-\tab endBetrag \lA 0\\
-\tab monthCounter \lA 1\\
-\tab for i \lA 1 to length(B) do\\
-\tab \tab endBetrag \lA endBetrag + (20 * P[i$]^{monthCounter-1}$)\\
-\tab \tab monthCounter \lA monthCounter + 1\\
-\tab return endBetrag\\
+1 \tab new Array B [n ... length[P]]\\
+2 \tab B = revert(mergeSort(P))\\
+3 \tab endBetrag \lA 0\\
+4 \tab monthCounter \lA 1\\
+5 \tab for i \lA 1 to length(B) do\\
+6 \tab \tab j \lA B[i]\\
+7 \tab \tab endBetrag \lA endBetrag + (20 * P[j$]^{monthCounter-1}$)\\
+8 \tab \tab monthCounter \lA monthCounter + 1\\
+9 \tab return endBetrag\\
+\subsubsection\
+Operationen nach lines geordnet:\\
+$
+1: \Theta(1)\\
+2: O(n * log(n))\\
+3,4: \Theta(2)\\
+5: \Theta(n)\\
+6,7,8: \Theta(3)\\
+9: \Theta(1)\\
+$
+\\
+Fuer die Laufzeit im "Worst-Case" ergibt sich:\\
+$
+1 + n * log(n) + 2 + n *(3) + 1\\
+= n * log(n) + 3 * n + 4 \in O(n*log(n))\\
+$
+\subsubsection\
+Der Algorithmus basiert darauf die Muenzen mit den groessten Werten aus P zuerst zu kaufen.\\
+\\
+Zu zeigen ist nun, dass der Gesamtbetrag genau dann optimal ist, wenn wie beschrieben vorgegangen wird.\\
+Dies gelingt, indem man zeigt, dass geraden mit groesserer Steigung nach einem bestimmten Zeitraum t einen hoeheren Wert
+erlangen als solche mit niedrigerer Steigung.\\
+\\
+Gegeben sei:\\
+$g_1(n) = i * n,\ g_2(n) = j * n,\ i < j\\$
+\\
+I.A.\\
+n = 1 (da wir auch im Monat 1 starten)\\
+$g1(1) = i < j = g_2(1)$\\
+I.V.\\
+Die Aussage gelte fuer $n \in \mathbb{N}$ beliebig, aber fest.\\
+I.S.\\
+n $\rightarrow$ n + 1\\
+$g_1(n+1) = (n+1) * i <^{I.V.} (n+1) * j = g_2(n+1)$\\
+\\
+Damit ist offensichtlich der Endbetrag am kleinsten, wenn die Muenzen mit der groessten Wertsteigung zuerst
+gekauft werden und der Algorithmus optimal.
 \end{document}
