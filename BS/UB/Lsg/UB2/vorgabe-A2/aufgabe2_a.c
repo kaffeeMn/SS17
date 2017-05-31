@@ -40,6 +40,7 @@ void* run(void *args)
         
         // check whether it's already been dealt with
         // and do the task eventually
+        // otherwise a new random task will bes selected
         if(task->done != 1){
             do_WorkingSet(task);
             ++global_done;
@@ -52,8 +53,10 @@ void* run(void *args)
 void do_WorkingSet(WorkingSet *workingSet) {
     int i;
     for(i=0; i<workingSet->length; ++i){
+        // the output shall be the result of the operation called with the input and the workingset
         workingSet->output[i] = workingSet->operation(workingSet->input[i], workingSet);
     }
+    // setting the flag
     workingSet->done = 1;
 }
 /* Pseudozufallszahlengenerator initialisieren, Arrays befuellen */
@@ -65,7 +68,8 @@ int main(int argc, char **argv)
     // Hier sollte euer Code hin
 
 
-    // List needed for the threads
+    // List needed for the threads (might aswell initialize a list instead of a new thread in each loop, that cannot be 
+    // referenced, if neccessary)
     pthread_t   threadList[THREAD_NUM];
     int         status;
     // loop initialzing threads
@@ -73,12 +77,12 @@ int main(int argc, char **argv)
     for(i=0; i<THREAD_NUM; ++i){
         // @thread          : thread at index i
         // @attr            : None
-        // @start_routine   : run - method
+        // @start_routine   : run-method
         // @arg             : index i of thread
         status = pthread_create(&threadList[i], NULL, &run, i);
         if(status != 0){
             // Fehlerbehandlung
-            if(errno == EINTR || errno == EAGAIN) continue;
+            if(errno == EINTR) continue;
             perror("An error occured while creating a thread");
             exit(EXIT_FAILURE);
         }
@@ -90,7 +94,7 @@ int main(int argc, char **argv)
         status = pthread_join(&threadList[i], NULL);
         if(status != 0){
             // Fehlerbehandlung
-            if(errno == EINTR || errno == EAGAIN) continue;
+            if(errno == EINTR) continue;
             perror("An error occured while joining a thread");
             exit(EXIT_FAILURE);
         }
