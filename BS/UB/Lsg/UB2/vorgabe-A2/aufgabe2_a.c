@@ -49,40 +49,38 @@ void* run(void *args)
     pthread_exit(NULL);
 }
 void do_WorkingSet(WorkingSet *workingSet) {
-
+    int i;
+    for(i=0; i<workingSet->length; ++i){
+        workingSet->output[i] = workingSet->operation(workingSet->input[i]);
+    }
     workingSet->done = 1;
-}
-void initThreads(&threadList, &statusList){
-    int i;
-    for(i=0; i<THREAD_NUM; ++i){
-        &statusList[i] = pthread_create(
-            &threadList[i], NULL, &run, NULL
-        );
-    }
-}
-void checkExceptions(&int statusList[]){
-    int i;
-    for(i=0; i<THREAD_NUM; ++i){
-        // Fehlerbehandlung
-    }
 }
 /* Pseudozufallszahlengenerator initialisieren, Arrays befuellen */
 int main(int argc, char **argv)
 {
     // Initialisiere die Datenkorruption
     initialize();
+    
+    // Hier sollte euer Code hin
 
     // List needed for the threads
     pthread_t   threadList[THREAD_NUM];
-    int         statusList[THREAD_NUM];
+    int         status;
     // loop initialzing threads
-    initThreads(&threadList, &statusList);
+    int i;
+    for(i=0; i<THREAD_NUM; ++i){
+        status = pthread_create(
+            &threadList[i], NULL, &run, NULL
+        );
+        if(status){
+            // Fehlerbehandlung
+        }
+    }
     // loop that checks for exceptions
     checkExceptions(&statusList);
     // exiting threads (just to be sure)
     pthread_exit(NULL);
 
-    // Hier sollte euer Code hin
 
     // Pruefe auf Datenkorruption
     test_results();
