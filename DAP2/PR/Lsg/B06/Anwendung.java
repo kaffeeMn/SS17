@@ -3,6 +3,7 @@ import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Collections;
 
 public class Anwendung{
 
@@ -27,14 +28,24 @@ public class Anwendung{
             try{
                 tmp = new ArrayList<Interval>();
                 int[][] ranges = txtToInts(args[j]);
+                System.out.format("Es wurden %1$d Zeilen mit folgendem Inhalt gelesen:\n[", ranges.length);
                 for(int i=0; i<ranges.length; ++i){
-                    tmp.add(new Interval(ranges[i][0], ranges[i][1]));
+                    iv = new Interval(ranges[i][0], ranges[i][1])
+                    tmp.add(iv);
+                    if(i < arr.length-1){
+                        System.out.print(iv.toString() + ",");
+                    }
                 }
+                System.out.println(iv.toString() + "]");
+                Collections.sort(tmp);
+                System.out.println("Sortier:");
+                printArrayList(tmp);
                 aList.add(tmp);
             }catch(Exception e){
                 handle(e);
             }
         }
+        System.out.
         return aList;
     }
     public static void handle(Exception e){
@@ -51,7 +62,7 @@ public class Anwendung{
     public static ArrayList<Interval> latenessScheduling(ArrayList<Interval> intervals){
         return intervals;
     }
-    public static void printArrayList(ArrayList<Interval> arr){
+    public static void printArrayList(ArrayList<Interval> arr, String kind){
         String result = "";
         for(Interval iv : arr){
             result += iv.toString() + "\n";
@@ -67,12 +78,12 @@ public class Anwendung{
         switch(args[0]){
             case "Interval":
                 for(ArrayList<Interval> arr : aList){
-                    printArrayList(intervalScheduling(arr));
+                    printArrayList(intervalScheduling(arr), "iv");
                 }
                 break;
             case "Lateness":
                 for(ArrayList<Interval> arr : aList){
-                    printArrayList(latenessScheduling(arr));
+                    printArrayList(latenessScheduling(arr), "lt");
                 }
                 break;
             default:
