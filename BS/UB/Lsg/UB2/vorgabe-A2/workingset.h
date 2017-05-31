@@ -1,6 +1,6 @@
 #ifndef WORKINGSET_H
 #define WORKINGSET_H
-
+#include <pthread.h>
 // Die zu verteilenden Aufgaben
 struct WorkingSet {
     // Eingabe-Array dieses WorkingSets
@@ -22,4 +22,6 @@ struct WorkingSet {
 // Typdefinition fuer besseren Umgang
 typedef struct WorkingSet WorkingSet;
 
+// added
+extern pthread_mutex_t lock;
 #endif
