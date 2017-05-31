@@ -7,6 +7,9 @@
 
 #include "workingset.h"
 
+// 
+#include <errno.h>
+
 WorkingSet tasks[TASK_NUM];
 
 // Wieviele Aufgaben wurden erledigt?
@@ -51,7 +54,7 @@ void* run(void *args)
 void do_WorkingSet(WorkingSet *workingSet) {
     int i;
     for(i=0; i<workingSet->length; ++i){
-        workingSet->output[i] = workingSet->operation(workingSet->input[i]);
+        workingSet->output[i] = workingSet->operation(workingSet->input[i], workingSet);
     }
     workingSet->done = 1;
 }
@@ -69,17 +72,32 @@ int main(int argc, char **argv)
     // loop initialzing threads
     int i;
     for(i=0; i<THREAD_NUM; ++i){
-        status = pthread_create(
-            &threadList[i], NULL, &run, NULL
-        );
-        if(status){
+        // @thread          : thread at index i
+        // @attr            : None
+        // @start_routine   : run - method
+        // @arg             : index i of thread
+        status = pthread_create(&threadList[i], NULL, &run, i);
+        if(status != 0){
             // Fehlerbehandlung
+            if(errno == EINTR || errno == EAGAIN) continue;
+            perror("An error occured while creating a thread");
+            exit(EXIT_FAILURE);
         }
     }
-    // loop that checks for exceptions
-    checkExceptions(&statusList);
-    // exiting threads (just to be sure)
+    for(i=0; i<THREAD_NUM; ++i){
+        // @thread  : thread at index i
+        // @attr    : None
+        status = pthread_join(&threadList[i], NULL);
+        if(status != 0){
+            // Fehlerbehandlung
+            if(errno == EINTR || errno == EAGAIN) continue;
+            perror("An error occured while joining a thread");
+            exit(EXIT_FAILURE);
+        }
+    }
+    // exiting threads
     pthread_exit(NULL);
+
 
 
     // Pruefe auf Datenkorruption
