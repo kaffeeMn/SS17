@@ -48,6 +48,9 @@ public class Anwendung{
         }
         return intervals;
     }
+    public static ArrayList<Interval> latenessScheduling(ArrayList<Interval> intervals){
+        return intervals;
+    }
     public static void printArrayList(ArrayList<Interval> arr){
         String result = "";
         for(Interval iv : arr){
@@ -56,9 +59,24 @@ public class Anwendung{
         System.out.print(result);
     }
     public static void main(String[] args){
-        LinkedList<ArrayList<Interval>> aList = pathsToArrayLists(args);
-        for(ArrayList<Interval> arr : aList){
-            printArrayList(intervalScheduling(arr));
+        String[] paths = new String[args.length - 1];
+        for(int i=0; i<paths.length; ++i){
+            paths[i] = args[i+1];
+        }
+        LinkedList<ArrayList<Interval>> aList = pathsToArrayLists(paths);
+        switch(args[0]){
+            case "Interval":
+                for(ArrayList<Interval> arr : aList){
+                    printArrayList(intervalScheduling(arr));
+                }
+                break;
+            case "Lateness":
+                for(ArrayList<Interval> arr : aList){
+                    printArrayList(latenessScheduling(arr));
+                }
+                break;
+            default:
+                break;
         }
     }
 }
