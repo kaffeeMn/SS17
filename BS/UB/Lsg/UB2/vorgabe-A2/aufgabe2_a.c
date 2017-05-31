@@ -40,15 +40,13 @@ void* run(void *args)
         
         // check whether it's already been dealt with
         // and do the task eventually
-        if(taks->done != 1){
+        if(task->done != 1){
             do_WorkingSet(task);
             ++global_done;
-            ++thread_done[&thread_counter];
+            thread_done[&thread_counter] = 1;
         }
     }
-    if(pthread_join(threadList[i], NULL) != 0){
-        // Fehlerbehandlung
-    }
+    // exiting thread
     pthread_exit(NULL);
 }
 void do_WorkingSet(WorkingSet *workingSet) {
@@ -65,6 +63,7 @@ int main(int argc, char **argv)
     initialize();
     
     // Hier sollte euer Code hin
+
 
     // List needed for the threads
     pthread_t   threadList[THREAD_NUM];
@@ -84,6 +83,7 @@ int main(int argc, char **argv)
             exit(EXIT_FAILURE);
         }
     }
+    // loop to call join on each thread
     for(i=0; i<THREAD_NUM; ++i){
         // @thread  : thread at index i
         // @attr    : None
@@ -97,7 +97,6 @@ int main(int argc, char **argv)
     }
     // exiting threads
     pthread_exit(NULL);
-
 
 
     // Pruefe auf Datenkorruption
