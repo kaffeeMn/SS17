@@ -24,12 +24,15 @@ int input_values[ARRAY_SIZE];
 // Das Ergebnis der Berechnung
 int results[ARRAY_SIZE];
 
+// added
+pthread_mutex_t lock;
 
 // Die Thread-Funktion
 void* run(void *args)
 { 
     int *thread_counter = (int*)args;
     
+    int status = 0;
     while(global_done < TASK_NUM)
     {
         // Eine Aufgabe auswuerfeln
@@ -37,7 +40,14 @@ void* run(void *args)
 
         // Pointer auf das WorkingSet aufloesen
         WorkingSet *task = &tasks[task_num];
-        
+
+        status = pthread_mutex_lock(&lock);
+        if(status != 0){
+            // Fehlerbehandlung
+            if(errno == EINTR) continue;
+            perror("An error occured while locking the mutex");
+            exit(EXIT_FAILURE);
+        }
         // check whether it's already been dealt with
         // and do the task eventually
         // otherwise a new random task will bes selected
@@ -45,6 +55,13 @@ void* run(void *args)
             do_WorkingSet(task);
             ++global_done;
             thread_done[thread_counter[0]] = 1;
+        }
+        status = pthread_mutex_unlock(&lock);
+        if(status != 0){
+            // Fehlerbehandlung
+            if(errno == EINTR) continue;
+            perror("An error occured while unlocking the mutex");
+            exit(EXIT_FAILURE);
         }
     }
     // exiting thread
@@ -72,6 +89,7 @@ int main(int argc, char **argv)
     // referenced, if neccessary)
     pthread_t   threadList[THREAD_NUM];
     int         status;
+    pthread_mutex_init(&lock, NULL);
     // loop initialzing threads
     int i;
     for(i=0; i<THREAD_NUM; ++i){
