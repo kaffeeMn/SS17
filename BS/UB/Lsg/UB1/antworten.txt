@@ -20,3 +20,11 @@
        Nach 2 Generationen: 4 Prozesse
        Nach 3 Generationen: 8 Prozesse
        Und nach n Generationen: 2 hoch n Prozesse
+	
+    b) Die Forkbomb allgemein auch Rabbit genannt erzeugt Prozesse die exponentiell zunehmen. Selbst wenn diese keinen komplexen Code enthalten, ist ein Arbeiten nach wenigen Sekunden unmöglich, da alle verfügbaren Systemressouren verbraucht sind. Dies könnte unbeabsichtigt vom Nutzer geschehen oder von einem Angreifer genutzt werden. 
+
+Daher ist es ratsam die maximale Anzahl der Prozesse zu limitieren.
+1. Beispiel : tux        hard     nproc    100
+2. Beispiel : @guests     hard     nproc   2000
+	
+
