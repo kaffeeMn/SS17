@@ -13,6 +13,6 @@ public class IvObj implements Comparable<IvObj>{
     }
     @Override
     public int  compareTo(IvObj other){
-        return (this.end - this.start) - (other.getEnd() - other.getStart());
+        return this.end - other.getEnd();
     }
 }
