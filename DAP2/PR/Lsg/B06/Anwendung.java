@@ -16,7 +16,7 @@ public class Anwendung{
         for(int i=0; i<lines.length; ++i){
             tmp = lines[i].split(",", 2);
             result[i][0] = Integer.parseInt(tmp[0]);
-            result[i][0] = Integer.parseInt(tmp[1]);
+            result[i][1] = Integer.parseInt(tmp[1]);
         }
         return result;
     }
@@ -28,6 +28,7 @@ public class Anwendung{
             try{
                 tmp = new ArrayList<Interval>();
                 int[][] ranges = txtToInts(args[j]);
+                System.out.println("Bearbeite: " + args[j]);
                 System.out.format("Es wurden %1$d Zeilen mit folgendem Inhalt gelesen:\n[", ranges.length);
                 for(int i=0; i<ranges.length; ++i){
                     iv = new Interval(ranges[i][0], ranges[i][1]);
@@ -55,6 +56,7 @@ public class Anwendung{
             try{
                 tmp = new ArrayList<Job>();
                 int[][] ranges = txtToInts(args[j]);
+                System.out.println("Bearbeite: " + args[j]);
                 System.out.format("Es wurden %1$d Zeilen mit folgendem Inhalt gelesen:\n[", ranges.length);
                 for(int i=0; i<ranges.length; ++i){
                     iv = new Job(ranges[i][0], ranges[i][1]);
@@ -91,8 +93,8 @@ public class Anwendung{
         return result;
     }
     public static int maxLate(ArrayList<Job> jobs){
-        int max = 0;
         int tmp;
+        int max = 0;
         for(Job j : jobs){
             tmp = (j.getEnd() - j.getStart());
             if(tmp > max){
@@ -103,11 +105,20 @@ public class Anwendung{
     }
     public static int[] latenessScheduling(ArrayList<Job> intervals){
         int z = 0;
+        int maxLate = 0;
+        int tmpMax = 0;
         int[] result = new int[intervals.size()];
         for(int i=0; i<intervals.size(); ++i){
             result[i] = z;
             z += intervals.get(i).getStart();
+            if(z > intervals.get(i).getEnd()){
+                tmpMax = z - intervals.get(i).getEnd();
+                if(tmpMax > maxLate){
+                    maxLate = tmpMax;
+                }
+            }
         }
+        System.out.println("Maximum lateness: " + maxLate);
         return result;
     }
     public static void printArrayListInt(ArrayList<Interval> arr){
@@ -123,15 +134,13 @@ public class Anwendung{
             result += j.toString() + "\n";
         }
         System.out.print(result);
-        System.out.println(maxLate(arr) + " units too late.");
+        //System.out.println(maxLate(arr) + " units too late.");
     }
     public static void handleInterval(String[] paths){
         LinkedList<ArrayList<Interval>> aList = pathsToArrayListsInt(paths);
-        int i = 0;
         for(ArrayList<Interval> arr : aList){
-            System.out.println("Bearbeite: " + paths[i]);
+            System.out.println("result:");
             printArrayListInt(intervalScheduling(arr));
-            ++i;
         }
     }
     public static void printArray(int[] arr){
@@ -143,11 +152,9 @@ public class Anwendung{
     }
     public static void handleLateness(String[] paths){
         LinkedList<ArrayList<Job>> aList = pathsToArrayListsLate(paths);
-        int i = 0;
         for(ArrayList<Job> arr : aList){
-            System.out.println("Bearbeite: " + paths[i]);
+            System.out.println("result:");
             printArray(latenessScheduling(arr));
-            ++i;
         }
     }
     public static void main(String[] args){
