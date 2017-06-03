@@ -16,36 +16,64 @@ public class Anwendung{
         for(int i=0; i<lines.length; ++i){
             tmp = lines[i].split(",", 2);
             result[i][0] = Integer.parseInt(tmp[0]);
-            result[i][0] = Integer.parseInt(tmp[1]);
+            result[i][1] = Integer.parseInt(tmp[1]);
         }
         return result;
     }
-    public static LinkedList<ArrayList<Interval>> pathsToArrayLists(String[] args){
-        Interval[] ivList;
+    public static LinkedList<ArrayList<Interval>> pathsToArrayListsInt(String[] args){
         LinkedList<ArrayList<Interval>> aList = new LinkedList<ArrayList<Interval>>();
         ArrayList<Interval> tmp;
+        Interval iv = new Interval(0,0);
         for(int j=0; j<args.length; ++j){
             try{
                 tmp = new ArrayList<Interval>();
                 int[][] ranges = txtToInts(args[j]);
+                System.out.println("Bearbeite: " + args[j]);
                 System.out.format("Es wurden %1$d Zeilen mit folgendem Inhalt gelesen:\n[", ranges.length);
                 for(int i=0; i<ranges.length; ++i){
-                    iv = new Interval(ranges[i][0], ranges[i][1])
+                    iv = new Interval(ranges[i][0], ranges[i][1]);
                     tmp.add(iv);
-                    if(i < arr.length-1){
+                    if(i < ranges.length-1){
                         System.out.print(iv.toString() + ",");
                     }
                 }
                 System.out.println(iv.toString() + "]");
                 Collections.sort(tmp);
-                System.out.println("Sortier:");
-                printArrayList(tmp);
+                System.out.println("Sortiert:");
+                printArrayListInt(tmp);
                 aList.add(tmp);
             }catch(Exception e){
                 handle(e);
             }
         }
-        System.out.
+        return aList;
+    }
+    public static LinkedList<ArrayList<Job>> pathsToArrayListsLate(String[] args){
+        LinkedList<ArrayList<Job>> aList = new LinkedList<ArrayList<Job>>();
+        ArrayList<Job> tmp;
+        Job iv = new Job(0,0);
+        for(int j=0; j<args.length; ++j){
+            try{
+                tmp = new ArrayList<Job>();
+                int[][] ranges = txtToInts(args[j]);
+                System.out.println("Bearbeite: " + args[j]);
+                System.out.format("Es wurden %1$d Zeilen mit folgendem Inhalt gelesen:\n[", ranges.length);
+                for(int i=0; i<ranges.length; ++i){
+                    iv = new Job(ranges[i][0], ranges[i][1]);
+                    tmp.add(iv);
+                    if(i < ranges.length-1){
+                        System.out.print(iv.toString() + ",");
+                    }
+                }
+                System.out.println(iv.toString() + "]");
+                Collections.sort(tmp);
+                System.out.println("Sortiert:");
+                printArrayListLate(tmp);
+                aList.add(tmp);
+            }catch(Exception e){
+                handle(e);
+            }
+        }
         return aList;
     }
     public static void handle(Exception e){
@@ -54,37 +82,92 @@ public class Anwendung{
     }
     public static ArrayList<Interval> intervalScheduling(ArrayList<Interval> intervals){
         int j = 0;
-        for(int i=0; i<intervals.size(); ++i){
-            //
+        ArrayList<Interval> result = new ArrayList<Interval>();
+        result.add(intervals.get(0));
+        for(int i=1; i<intervals.size(); ++i){
+            if(intervals.get(i).getStart() >= intervals.get(j).getEnd()){
+                result.add(intervals.get(i));
+                j = i;
+            }
         }
-        return intervals;
+        return result;
     }
-    public static ArrayList<Interval> latenessScheduling(ArrayList<Interval> intervals){
-        return intervals;
+    public static int maxLate(ArrayList<Job> jobs){
+        int tmp;
+        int max = 0;
+        for(Job j : jobs){
+            tmp = (j.getEnd() - j.getStart());
+            if(tmp > max){
+                max = tmp;
+            }
+        }
+        return max;
     }
-    public static void printArrayList(ArrayList<Interval> arr, String kind){
+    public static int[] latenessScheduling(ArrayList<Job> intervals){
+        int z = 0;
+        int maxLate = 0;
+        int tmpMax = 0;
+        int[] result = new int[intervals.size()];
+        for(int i=0; i<intervals.size(); ++i){
+            result[i] = z;
+            z += intervals.get(i).getStart();
+            if(z > intervals.get(i).getEnd()){
+                tmpMax = z - intervals.get(i).getEnd();
+                if(tmpMax > maxLate){
+                    maxLate = tmpMax;
+                }
+            }
+        }
+        System.out.println("Maximum lateness: " + maxLate);
+        return result;
+    }
+    public static void printArrayListInt(ArrayList<Interval> arr){
         String result = "";
-        for(Interval iv : arr){
+        for(IvObj iv : arr){
             result += iv.toString() + "\n";
         }
         System.out.print(result);
+    }
+    public static void printArrayListLate(ArrayList<Job> arr){
+        String result = "";
+        for(Job j : arr){
+            result += j.toString() + "\n";
+        }
+        System.out.print(result);
+        //System.out.println(maxLate(arr) + " units too late.");
+    }
+    public static void handleInterval(String[] paths){
+        LinkedList<ArrayList<Interval>> aList = pathsToArrayListsInt(paths);
+        for(ArrayList<Interval> arr : aList){
+            System.out.println("result:");
+            printArrayListInt(intervalScheduling(arr));
+        }
+    }
+    public static void printArray(int[] arr){
+        String result = "[" + arr[0];
+        for(int i=1; i<arr.length; ++i){
+            result += ", " + arr[i];
+        }
+        System.out.println(result + "]");
+    }
+    public static void handleLateness(String[] paths){
+        LinkedList<ArrayList<Job>> aList = pathsToArrayListsLate(paths);
+        for(ArrayList<Job> arr : aList){
+            System.out.println("result:");
+            printArray(latenessScheduling(arr));
+        }
     }
     public static void main(String[] args){
         String[] paths = new String[args.length - 1];
         for(int i=0; i<paths.length; ++i){
             paths[i] = args[i+1];
         }
-        LinkedList<ArrayList<Interval>> aList = pathsToArrayLists(paths);
         switch(args[0]){
             case "Interval":
-                for(ArrayList<Interval> arr : aList){
-                    printArrayList(intervalScheduling(arr), "iv");
-                }
+                handleInterval(paths);
                 break;
             case "Lateness":
-                for(ArrayList<Interval> arr : aList){
-                    printArrayList(latenessScheduling(arr), "lt");
-                }
+                handleLateness(paths);
                 break;
             default:
                 break;
