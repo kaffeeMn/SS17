@@ -1,0 +1,158 @@
+\documentclass{article}
+\author{Max Springenberg, 177792}
+\title{
+    DAP2 UB8\\
+    Anja Rey, Gr.23 , Briefkasten 22
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\setcounter{section}{8}
+% \Theta \Omega \omega
+\newcommand{\tab}{\null \qquad}
+\newcommand{\lA}{$\leftarrow$}
+\begin{document}
+\maketitle
+\subsection{Dynamische Programmierung}
+gegeben:\\
+n Uebungsblaetter\\
+$1 \leq i\leq n$\\
+Liste mit bepunktungen $A \in \mathbb{N}^{n}_{\geq 0}$\\
+\subsubsection\
+B mit $[b_0 ... b_n]$\\
+Existieren keine Uebungsblaetter, so koennen auch keine Punkte vergeben werden, daher $B[0] = 0$\\
+Existiert nur ein Uebungsblatt, so ist dessen Punktzahl auch die maximale Punktzahl, daher $B[1] = A[1]$\\
+Ansonsten muss zwischen der maximalen Punktzahl bis zum vorherigen Uebungsblattes und der maximalen
+Punktzahl bis zum Uebungsblatt davor plus der Punktzahl fuer das aktuelle Uebungsblatt selbst abgewogen werden.\\
+$
+B[i] = \begin{cases}
+    0   & (i = 0)\\
+    A[i]& (i = 1)\\
+    max\{
+        B[i-1], A[i] + B[i-2]
+    \}  & sonst\\
+\end{cases}
+$
+\subsubsection\
+Uebungsblaetter(A):
+1\tab n \lA length(A)\\
+2\tab B \lA new Array[0..n]\\
+3\tab B[0] \lA 0\\
+4\tab B[1] \lA A[1]\\
+5\tab for i \lA 2 to n do\\
+6\tab \tab B[i] \lA max{B[i-1], A[i] + B[i-2]}\\
+7\tab return B[n]\\
+\subsubsection\
+1-4: Konstante Laufzeit $\Theta(4)$\\
+5-6: $\Theta(1+n*1)$\\
+7: Konstante Laufzeit $\Theta(1)$\\
+Insgesamt:\\
+$
+\Theta(4+1+n*1+1) = \Theta(n+5) \in O(n)\\
+$
+\subsubsection\
+Aussage:\\
+B[i] sei die Maximale Punktzahl fuer Alle Blaetter bis A[i].\\
+Induktion ueber i.\\
+\\
+I.A.\\
+i = 1:\\
+Da es keine weiteren Blaetter gibt ist B[i] = A[i], damit korrekt.\\
+\\
+I.V.\\
+Die Aussage gelte fuer $i' \in mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
+\\
+I.S.\\
+fuer i > i':
+Annahme: m > B[i] sei die maximale Punktzahl fuer alle Blaetter bis A[i]\\
+Das Maximum ist entweder:\\
+(i) die maximale Punktzahl bis zum vorherigen Blatt A[i-1], oder\\
+(ii) die Punktzahl vom aktuellem Blatt A[i] plus der maximalen Punktzahl bis zwei Blaetter zuvor A[i-2]\\
+\\
+(i) wird mit i > i-1 nach der I.V. durch B[i-1] ermittelt\\
+(ii) das maximum bis A[i-2] wird nach der I.V. ebenfalls durch B[i-2] ermittelt.\\
+demnach gilt:\\
+max\{ maximale Punktzahl(A[i-1]), A[i] + maximale Punktzahl(A[i-2]) \}
+$
+= max\{B[i-1], A[i] + B[i-2]\} = B[i]\\
+$
+Demnach kann m nicht groesser B[i] sein und die Aussage ist bestaetigt.\\
+
+\newpage
+\subsection{Dynamische Programmierung}
+gegeben:\\
+n Bruecken\\
+$
+i, n \in \mathbb{N}, 1 \leq i \leq n\\
+A, B \in \mathbb{N}^{n-1}_{\geq 0}, C \in \mathbb{N}^{n}_{\geq 0}\\
+C[1] = C[n] = 0\\
+$
+\subsubsection\
+$\forall i \leq 0$ gilt: es wurden noch keine Brezeln gesammelt oder abgegeben.\\
+$\forall i > 1$ gilt: es koennen bereits Brezeln gesammelt und wieder abgegben wurden sein.
+Damit muss der erwerbt von $A[i], B[i]$ mit dem jeweiligen Fall einer Abgabe in $C[i+1]$ abgewogen werden
+und der maximale Wert genommen werden.\\
+\\
+Fuer p(i), dass die maximale Brezeln-Anzahl in Buda angibt und q(i), dass analog fuer Pest funktioniert
+ergeben sich somit die Rekursionsgleichungen:\\
+$
+p(i) = \begin{cases}
+    0   & (i \leq 1)\\
+    max\{
+        A[i] + p(i-1),
+        B[i] + q(i-1) - C[i+1]
+    \}  & sonst\\
+\end{cases}\\
+q(i) = \begin{cases}
+    0   & (i \leq 1)\\
+    max\{
+        A[i] + p(i-1) - C[i+1],
+        B[i] + q(i-1)
+    \}  & sonst\\
+\end{cases}\\
+$
+\subsubsection\
+Bruecken(A, B, C):\\
+1\tab n \lA min{length(a), length(B)}\\
+2\tab Buda \lA new Array[1..n]\\
+3\tab Pest \lA new Array[1..n]\\
+4\tab Pest[0] \lA 0\\
+5\tab Buda[0] \lA 0\\
+6\tab for i \lA 2 to n do\\
+7\tab \tab Buda[i] \lA $max\{\\
+\tab \tab \tab A[i] + Buda[i-1],\\
+\tab \tab \tab B[i] + Pest[i-1] - C[i+1]\\
+\tab \tab \}$\\
+8\tab \tab Pest[i] \lA $max\{\\
+\tab \tab \tab A[i] + Buda[i-1] - C[i+1],\\
+\tab \tab \tab B[i] + Pest[i-1]\\
+\tab \tab \}$\\
+9\tab return Buda[n]\\
+\subsubsection\
+1-5: Konstante Laufzeit $\Theta(5)$\\
+6-8: $\Theta(1+n*2)$\\
+9: Konstante Laufzeit $\Theta(1)$\\
+\\
+Insgesamt damit:\\
+$
+\Theta(5+1+n*2+1) = \Theta(2*n + 7) \in O(n)\\
+$
+\subsubsection\
+Aussage:\\
+p(i) berechnet die maximale Anzahl an Brezeln in Buda und q(i) berechnet die maximale Anzahl an Brezeln in Pest.\\
+Induktion ueber i.\\
+\\
+I.A.\\
+i = 1:\\
+Zu Beginn gibt es noch keine Brezeln und es wurden auch noch keine abgenommen, eine Brueckenueberfuehrung ist kostenlos,
+daher ist das Ergebnis fuer alle Faelle 0 = q(1) = p(1).\\
+\\
+I.V.\\
+Die Aussage gelte fuer $i' \in mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
+\\
+I.S.\\
+fuer i > i':\\
+Annahme: \\
+(i) $m_q$ > q(i) sei maximaler Brezeln-Wert fuer Pest und 
+(ii) $m_p$ > p(i) fuer Buda.\\
+\end{document}
