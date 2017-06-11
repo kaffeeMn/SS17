@@ -13,11 +13,12 @@
 \newcommand{\lA}{$\leftarrow$}
 \begin{document}
 \maketitle
+\newpage
 \subsection{Dynamische Programmierung}
 gegeben:\\
 n Uebungsblaetter\\
 $1 \leq i\leq n$\\
-Liste mit bepunktungen $A \in \mathbb{N}^{n}_{\geq 0}$\\
+Liste mit Bepunktungen $A \in \mathbb{N}^{n}_{\geq 0}$\\
 \subsubsection\
 B mit $[b_0 ... b_n]$\\
 Existieren keine Uebungsblaetter, so koennen auch keine Punkte vergeben werden, daher $B[0] = 0$\\
@@ -26,15 +27,15 @@ Ansonsten muss zwischen der maximalen Punktzahl bis zum vorherigen Uebungsblatte
 Punktzahl bis zum Uebungsblatt davor plus der Punktzahl fuer das aktuelle Uebungsblatt selbst abgewogen werden.\\
 $
 B[i] = \begin{cases}
-    0   & (i = 0)\\
-    A[i]& (i = 1)\\
+    0   & , (i = 0)\\
+    A[i]& , (i = 1)\\
     max\{
         B[i-1], A[i] + B[i-2]
-    \}  & sonst\\
+    \}  & , sonst\\
 \end{cases}
 $
 \subsubsection\
-Uebungsblaetter(A):
+Uebungsblaetter(A):\\
 1\tab n \lA length(A)\\
 2\tab B \lA new Array[0..n]\\
 3\tab B[0] \lA 0\\
@@ -48,11 +49,11 @@ Uebungsblaetter(A):
 7: Konstante Laufzeit $\Theta(1)$\\
 Insgesamt:\\
 $
-\Theta(4+1+n*1+1) = \Theta(n+5) \in O(n)\\
+\Theta(4+1+n*1+1) = \Theta(n+5) $ damit in $ O(n)\\
 $
 \subsubsection\
 Aussage:\\
-B[i] sei die Maximale Punktzahl fuer Alle Blaetter bis A[i].\\
+B[i] sei die maximale Punktzahl fuer Alle Blaetter bis A[i].\\
 Induktion ueber i.\\
 \\
 I.A.\\
@@ -60,11 +61,11 @@ i = 1:\\
 Da es keine weiteren Blaetter gibt ist B[i] = A[i], damit korrekt.\\
 \\
 I.V.\\
-Die Aussage gelte fuer $i' \in mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
+Die Aussage gelte fuer $i' \in \mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
 \\
 I.S.\\
-fuer i > i':
-Annahme: m > B[i] sei die maximale Punktzahl fuer alle Blaetter bis A[i]\\
+fuer i $>$ i':
+Annahme: m $>$ B[i] sei die maximale Punktzahl fuer alle Blaetter bis A[i]\\
 Das Maximum ist entweder:\\
 (i) die maximale Punktzahl bis zum vorherigen Blatt A[i-1], oder\\
 (ii) die Punktzahl vom aktuellem Blatt A[i] plus der maximalen Punktzahl bis zwei Blaetter zuvor A[i-2]\\
@@ -76,6 +77,7 @@ max\{ maximale Punktzahl(A[i-1]), A[i] + maximale Punktzahl(A[i-2]) \}
 $
 = max\{B[i-1], A[i] + B[i-2]\} = B[i]\\
 $
+\\
 Demnach kann m nicht groesser B[i] sein und die Aussage ist bestaetigt.\\
 
 \newpage
@@ -97,18 +99,18 @@ Fuer p(i), dass die maximale Brezeln-Anzahl in Buda angibt und q(i), dass analog
 ergeben sich somit die Rekursionsgleichungen:\\
 $
 p(i) = \begin{cases}
-    0   & (i \leq 1)\\
+    0   & , (i \leq 1)\\
     max\{
         A[i] + p(i-1),
         B[i] + q(i-1) - C[i+1]
-    \}  & sonst\\
+    \}  & , sonst\\
 \end{cases}\\
 q(i) = \begin{cases}
-    0   & (i \leq 1)\\
+    0   & , (i \leq 1)\\
     max\{
         A[i] + p(i-1) - C[i+1],
         B[i] + q(i-1)
-    \}  & sonst\\
+    \}  & , sonst\\
 \end{cases}\\
 $
 \subsubsection\
@@ -135,7 +137,7 @@ Bruecken(A, B, C):\\
 \\
 Insgesamt damit:\\
 $
-\Theta(5+1+n*2+1) = \Theta(2*n + 7) \in O(n)\\
+\Theta(5+1+n*2+1) = \Theta(2*n + 7) $ damit in $ O(n)\\
 $
 \subsubsection\
 Aussage:\\
@@ -148,12 +150,12 @@ Zu Beginn gibt es noch keine Brezeln und es wurden auch noch keine abgenommen, e
 daher ist das Ergebnis fuer alle Faelle 0 = q(1) = p(1).\\
 \\
 I.V.\\
-Die Aussage gelte fuer $i' \in mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
+Die Aussage gelte fuer $i' \in \mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber fest.\\
 \\
 I.S.\\
 fuer i = i' + 1:\\
 1.\\
-p(i) muss fuer i > 1 ein Maximum ermitteln:\\
+p(i) muss fuer i $>$ 1 ein Maximum ermitteln:\\
 es kann entweder der Weg vom letzten Maximum p(i-1) ueber
 A[i] mit:\\
 (p(i-1) + A[i])\\
@@ -169,7 +171,7 @@ max\{(p(i-1) + A[i]), (q(i-1) + B[i] - C[i+1]\}\\
 offensichtlich das Maximum fuer p(i)\\
 \\
 Analog fuer q(i):\\
-q(i) muss fuer i > 1 ein Maximum ermitteln:\\
+q(i) muss fuer i $>$ 1 ein Maximum ermitteln:\\
 es kann entweder der Weg vom letzten Maximum q(i-1) ueber
 B[i] mit:\\
 (q(i-1) + B[i])\\
@@ -184,7 +186,7 @@ demnach liefert:\\
 max\{(q(i-1) + B[i]), (p(i-1) + A[i] - C[i+1]\}\\
 offensichtlich das Maximum fuer p(i)\\
 \\
-Damit ist die Aussage bestätigt.
+Damit ist die Aussage bestaetigt.
 %Annahme: \\
 %(i) $m_q$ > q(i) sei maximaler Brezeln-Wert fuer Pest und 
 %(ii) $m_p$ > p(i) fuer Buda.\\
