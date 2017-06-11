@@ -152,7 +152,24 @@ Die Aussage gelte fuer $i' \in mathbb{N}$  mit $0 < i'< i \leq n$ beliebig, aber
 \\
 I.S.\\
 fuer i > i':\\
-Annahme: \\
-(i) $m_q$ > q(i) sei maximaler Brezeln-Wert fuer Pest und 
-(ii) $m_p$ > p(i) fuer Buda.\\
+1.\\
+p(i) muss fuer i > 1 ein Maximum ermitteln:\\
+es kann entweder der weg vom letzten maximum p(i-1) ueber
+A[i] mit:\\
+(p(i-1) + A[i])\\
+\\
+oder der Weg vom letzen Maximum des anderen Ufers q(i-1) ueber
+B[i] unter Subtraktion des Zolles der Bruecke C[i+1] mit:\\
+(q(i-1) + B[i] - C[i+1])\\
+\\
+zum Maximum führen.\\
+Dabei sind q(i-1) und p(i-1) nach I.V. korrekt.\\
+demnach liefert:\\
+max\{(p(i-1) + A[i]), (q(i-1) + B[i] - C[i+1]\}\\
+offensichtlich das Maximum fuer p(i)\\
+\\
+Analog fuer q(i):\\
+%Annahme: \\
+%(i) $m_q$ > q(i) sei maximaler Brezeln-Wert fuer Pest und 
+%(ii) $m_p$ > p(i) fuer Buda.\\
 \end{document}
