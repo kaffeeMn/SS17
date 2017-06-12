@@ -1,0 +1,3 @@
+This package contains an implementation for the AbstractView in edu.udo.cs.swtsf.view. 
+This implementation uses Swing for rendering and input processing. It is instantiated 
+and used by the SwingPlayScreen from the package edu.udo.cs.swtsf.swing.
