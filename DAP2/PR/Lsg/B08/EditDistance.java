@@ -7,8 +7,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 
 public class EditDistance{
-    
-    // A1
+   // A1
     private static int[][] distance(String str1, String str2){
         int len1 = str1.length()+1;
         int len2 = str2.length()+1;
@@ -57,45 +56,114 @@ public class EditDistance{
     private static String backtrace(int[][] matrix, String str1, String str2){
         String result= String.format(
             "Loesung fuer %1$s --> %2$s mit Gesamtkosten %3$s\n",
-            str1, str2, matrix[str1.length()+1][str2.length()+1]
+            str1, str2, matrix[str1.length()][str2.length()]
         );
+        String hLine = "";
         for(int i=0; i<result.length(); ++i){
-            result += "=";
+            hLine += "=";
         }
+        result += hLine + "\n";
         String backtraces = "";
         for(String line : backtraceList(matrix, str1, str2)){
             backtraces = line + "\n" + backtraces;
         }
-        return result + "\n" + backtraces;
+        return result + backtraces;
     }
     private static LinkedList<String> backtraceList(int[][] matrix, String str1, String str2){
-        int len1 = str1.length()+1;
-        int len2 = str2.length()+1;
+        int len1 = str1.length();
+        int len2 = str2.length();
         LinkedList<String> result = new LinkedList<String>();
         int stepCount = (len1 > len2) ? len1 : len2;
-        for(int i=len1; i>0; --i){
-            for(int j=len2; j>0; --j){
-                result.add(stepToStr(stepCount--, i, j, matrix));
-            }
+
+        Tuple<String, int[]> tup;
+        while(len1 != 0 || len2 != 0){
+            tup = stepToTuple(stepCount--, len1, len2, matrix, str1, str2);
+            result.add(tup.getA());
+            len1 = tup.getB()[0];
+            len2 = tup.getB()[1];
         }
+        //for(int i=len1; i>0; --i){
+        //    for(int j=len2; j>0; --j){
+        //        result.add(stepToStr(stepCount--, i, j, matrix, str1, str2));
+        //    }
+        //}
+
         return result;
     }
-    private static String stepToStr(int count, int i, int j, int[][] matrix){
+    private static Tuple<String, int[]> stepToTuple(int count, int i, int j, int[][] matrix, String str1, String str2){
+        char[] cStr1 = str1.toCharArray();
+        char[] cStr2 = str2.toCharArray();
         String result = String.format("%1$s) Kosten: ", count);
-        int val = matrix[i][j]
-            if(val == matrix[i-1][j-1]){
-                result += "Behalte";
-            }
-            if(val == matrix[i-1][j-1] + 1){
-                result += "Ersetze";
-            }
-            if(val == matrix[i-1][j] + 1){
-                result += "Loesche";
-            }
-            if(val == matrix[i][j-1] + 1){
-                result += "Fuege";
-            }
-            return result + "--> ";
+        int val = matrix[i][j];
+        int[] arr = new int[2];
+        int flag = 0;
+        if(i>0 && j>0 && val == matrix[i-1][j-1]){
+            result += String.format("%1$s Behalte %2$s an Position %3$s", 0, cStr1[i-1], (j-1));
+            arr[0] = i-1;
+            arr[1] = j-1;
+        }else if(i>0 && j>0 && val == matrix[i-1][j-1] + 1){
+            result += String.format("%3$s Ersetze %1$s mit %2$s an Position %4$s", cStr1[i-1], cStr2[j-1], 1, (j-1));
+            arr[0] = i-1;
+            arr[1] = j-1;
+        }else if(i>0 && val == matrix[i-1][j] + 1){
+            result += String.format("%3$s Loesche %1$s an Position %2$s", cStr1[i-1], (j-1), 1);
+            arr[0] = i-1;
+            arr[1] = j;
+            flag = 1;
+        }else{//(val == matrix[i][j-1] + 1){
+            result += String.format("%3$s Fuege %1$s an Position %2$s ein", cStr2[j-1], (j-1), 1);
+            arr[0] = i;
+            arr[1] = j-1;
+            flag = 2;
+        }
+        String changed = new String(takeTo(j, cStr1, cStr2, flag));
+        return new Tuple(result + " --> " + changed, arr);
+    }
+    private static char[] takeTo(int n, char[] arr1, char[] arr2, int flag){
+        int len;
+        char[] result;
+        switch(flag){
+            case 1:
+                len = (arr1.length > n) ? arr1.length : n;
+                result = new char[len-1];
+                for(int i=0; i<len; ++i){
+                    if(i<n){
+                        result[i] = arr2[i];
+                    }else if(i>n){
+                        if(arr1.length > i){
+                            result[i] = arr1[i];
+                        }
+                    }
+                }
+                break;
+            case 2:
+                len = (arr1.length > n) ? arr1.length : n;
+                result = new char[len+1];
+                for(int i=0; i<result.length; ++i){
+                    if(i<=n){
+                        result[i] = arr2[i];
+                    }else{
+                        if(arr1.length > i){
+                            result[i] = arr1[i-1];
+                        }
+                    }
+                }
+                break;
+            default:
+                len = (arr1.length > n) ? arr1.length : n;
+                result = new char[len];
+                for(int i=0; i<result.length; ++i){
+                    if(i<=n){
+                        result[i] = arr2[i];
+                    }else{
+                        if(arr1.length > i){
+                            result[i] = arr1[i];
+                        }
+                    }
+                }
+                break;
+        }
+        return result;
     }
     // parsing output
     private static void outputHandler(int[][] matrix, String[] input, int flag){
@@ -140,13 +208,13 @@ public class EditDistance{
                      break;
                 case 2:
                     outputHandler(distance(args[0], args[1]), args, flag);
-                     break;
+                    break;
                 default:
                      throw new IllegalArgumentException("wrong number of arguments");
             }
         }catch(Exception e){
             e.printStackTrace();
-            System.out.format("Exception Message:\t", e.getMessage());
+            System.out.format("Exception Message:\t%1$s\n", e.getMessage());
         }
     }
 }
