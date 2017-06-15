@@ -17,7 +17,7 @@ public class PlayerHitCounter extends HudElement implements TargetObserver{
     }
 
     public void onAfterHitpointsChanged(Target target, int data){
-        String text = String.format("Hit-Counter: %1$s", ++this.hitCount);
+        String text = String.format("Hits: %1$s", ++this.hitCount);
         setText(text);
     }
 

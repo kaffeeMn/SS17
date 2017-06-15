@@ -1,3 +1,5 @@
+package exercise.monsters;
+
 public class MonsterSpeedup extends AbstractMonster{
     
     public class MonsterSpeedup(){
@@ -5,6 +7,7 @@ public class MonsterSpeedup extends AbstractMonster{
         damagePerHit = 2;
         setMaxHitpoints(8);
         setHitpoints(getMaxHitpoints()); 
+        addDefaultStrategies();
     }
     //TODO: find method that is called when monster is hit
 }
