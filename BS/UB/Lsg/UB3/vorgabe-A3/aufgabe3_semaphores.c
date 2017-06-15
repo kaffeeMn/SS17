@@ -8,13 +8,10 @@
 
 void initialize_semaphores()
 {
-    int i;
-    int status;
-    for(i = 0; i < THREAD_NUM; ++i){
+    for(int i = 0; i < THREAD_NUM; ++i){
         // using a none zero value here, so other threads are granted access
         // initial value is THREAD_NUM
-        status = sem_init(&(thread_data[i].sem), 1, THREAD_NUM);
-        if(status == -1){
+        if(sem_init(&(thread_data[i].sem), 1, THREAD_NUM)){
             // Fehlerbehandlung
             if(errno == EINTR) continue;
             perror("An error occured while initializing a semaphor");
@@ -25,11 +22,8 @@ void initialize_semaphores()
 
 void destroy_semaphores()
 {
-    int i;
-    int status;
-    for(i = 0; i < THREAD_NUM; ++i){
-        status = sem_destroy(&(thread_data[i].sem));
-        if(status == -1){
+    for(int i = 0; i < THREAD_NUM; ++i){
+        if(sem_destroy(&(thread_data[i].sem))){
             // Fehlerbehandlung
             if(errno == EINTR) continue;
             perror("An error occured while destroying a semaphor");

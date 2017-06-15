@@ -8,10 +8,10 @@
 
 struct ThreadData thread_data[THREAD_NUM];
 
+
 void* thread_function(void *args)
 {
 	struct ThreadData *this = (struct ThreadData *) args;	
-    //
     while(1){
         for(int i = 0; i < THREAD_NUM; ++i){
             for(int j = 0; j < MAX_REQUEST_NUM; ++j){
@@ -21,12 +21,18 @@ void* thread_function(void *args)
             free_all_memory(&thread_data[i]);
         }
     }
+    pthread_exit(NULL);
 }
 
 void cleanup()
 {
-    // end threads
-    pthread_exit(NULL);
+    // cancel threads
+    for(int i = 0; i < THREAD_NUM; ++i){
+        if(pthread_cancel(thread_data[i].thread_id)){
+			perror("pthread_create");
+			exit(EXIT_FAILURE);
+        }
+    }
     // end programm
     running = 0;
 }

@@ -8,25 +8,26 @@
 void request_memory(struct ThreadData *td, int amount)
 {
     // check for free memory
-    if(mm.available){
+    if(mm.available > amount){
         if(pthread_mutex_lock(&(mm.lock))){
 		    perror("pthread_mutex_lock");
 		    exit(1);
         }
-        mm.available = 0;
-        // speicher dem faden zuweisen 
-        td->requested += amount;
+        // flag to show that td is currently not waiting for datastorage
+        td->requested = 0;
+        mm.available -= amount;
         if(pthread_mutex_unlock(&(mm.lock))){
 		    perror("pthread_mutex_unlock");
 		    exit(1);
         }
     }else{
-        // oder vermerke warten und ueber semaphor schlafen
+        // or queue amount
         if(sem_wait(&(td->sem))){
 		    perror("sem_wait");
 		    exit(1);
         }
-        td->requested += amount;
+        // flag to show that td is currently waiting for datastorage
+        td->requested = 1;
     }
 }
 
