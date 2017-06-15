@@ -82,11 +82,6 @@ public class EditDistance{
             len1 = tup.getB()[0];
             len2 = tup.getB()[1];
         }
-        //for(int i=len1; i>0; --i){
-        //    for(int j=len2; j>0; --j){
-        //        result.add(stepToStr(stepCount--, i, j, matrix, str1, str2));
-        //    }
-        //}
 
         return result;
     }
@@ -116,6 +111,7 @@ public class EditDistance{
             arr[1] = j-1;
             flag = 2;
         }
+        System.out.println(flag);
         String changed = new String(takeTo(j, cStr1, cStr2, flag));
         return new Tuple(result + " --> " + changed, arr);
     }
@@ -127,11 +123,11 @@ public class EditDistance{
                 len = (arr1.length > n) ? arr1.length : n;
                 result = new char[len-1];
                 for(int i=0; i<len; ++i){
-                    if(i<n){
+                    if(i<n-1){
                         result[i] = arr2[i];
-                    }else if(i>n){
+                    }else if(i>=n){
                         if(arr1.length > i){
-                            result[i] = arr1[i];
+                            result[i-1] = arr1[i];
                         }
                     }
                 }
@@ -140,7 +136,7 @@ public class EditDistance{
                 len = (arr1.length > n) ? arr1.length : n;
                 result = new char[len+1];
                 for(int i=0; i<result.length; ++i){
-                    if(i<=n){
+                    if(i<n){
                         result[i] = arr2[i];
                     }else{
                         if(arr1.length > i){
