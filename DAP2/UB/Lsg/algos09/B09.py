@@ -3,7 +3,9 @@ from copy import deepcopy
 class Algorithm:
 
     def __init__(self, a, b):
-        print(self.a9_1b(a, b))
+        tmp = self.a9_1b(a, b)
+        for i in tmp:
+            print(i)
 
     def a9_1b(self, a, b):
         self.a, self.b = a, b
@@ -33,23 +35,17 @@ class Algorithm:
     def evaluate(self, i, j):
         indA = i-1
         indB = j-1
-        # gleichheit oder einfuegen von 0
-        if  (i == j and self.a[indA] == self.b[indB]) \
-        or (j>i and  self.a[indA] == self.b[indB] and self.b[indB-1] == 0) \
-        or (i>j and  self.a[indA] == self.b[indB] and self.a[indA-1] == 0):
-            ref = self.K[i-1][j-1]
-            self.K[i].append(deepcopy(ref))
+        minimum = min(
+            self.K[i-1][j-1], self.K[i-1][j], self.K[i][j-1]
+        )
+        if self.a[indA] == self.b[indB] \
+        or ((i>j) and self.a[indA-1] == 0) \
+        or ((i<j) and self.b[indB-1] == 0) \
+        or ((i>j) and self.a[indA] == 0) \
+        or ((i<j) and self.b[indB] == 0) :
+            self.K[i].append(deepcopy(minimum))
         else:
-            minimum = min(
-                self.K[i-1][j-1], self.K[i-1][j], self.K[i][j-1]
-            )
-            # entfernen von 0
-            if (self.a[indA] == 0 and i>j) \
-            or (self.b[indB] == 0 and j>i):
-                self.K[i].append(deepcopy(minimum))
-            # ersetzen
-            else:
-                self.K[i].append(deepcopy(minimum + 2))
+            self.K[i].append(deepcopy(minimum + 2))
 
 if __name__ == '__main__':
-    result = Algorithm([1,1,1,0], [1,0,1])
+    result = Algorithm([0,1,1,0], [1,0,1])
