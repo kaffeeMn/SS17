@@ -1,10 +1,13 @@
-public class Tuple<A, B>{
+public class Tuple<A, B, C>{
     private A a;
     private B b;
-    public Tuple(A a, B b){ 
+    private C c;
+    public Tuple(A a, B b, C c){ 
         this.a = a;
         this.b = b;
+        this.c = c;
     }
     public A getA(){return this.a;}
     public B getB(){return this.b;}
+    public C getC(){return this.c;}
 }

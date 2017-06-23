@@ -7,14 +7,14 @@ public class Rucksack{
         int[][] result = new int[wares.length+1][g];
         int count = 1;
         for(int i=0; i<g; ++i){
-            result[0][i] = 2*p*count++;
+            result[0][i] = 0;
         }
         for(int i=1; i<result.length; ++i){
             for(int j=0; j<g; ++j){
                 if(wares[i-1].getWeight() > j){
                     result[i][j] = result[i-1][j];
                 }else{
-                    result[i][j] = min(
+                    result[i][j] = max(
                         result[i-1][j], 
                         wares[i-1].getValue() + result[i-1][j-wares[i-1].getWeight()]
                     );
@@ -23,10 +23,10 @@ public class Rucksack{
         }
         return result;
     }
-    private static int min(int... vals){
+    private static int max(int... vals){
         int result = vals[0];
         for(int i=1; i<vals.length; ++i){
-            if(vals[i-1] > vals[i]){
+            if(vals[i-1] < vals[i]){
                 result = vals[i];
             }
         }
@@ -49,7 +49,7 @@ public class Rucksack{
         tStart  = System.currentTimeMillis();
         int[][] matrix = algorithm(wares, g, p);
         tEnd    = System.currentTimeMillis();
-        System.out.format("took %1$s ms", tEnd - tStart);
+        System.out.format("took %1$s ms \n", tEnd - tStart);
         printMatrix(matrix);
     }
     private static void printMatrix(int[][] matrix){
