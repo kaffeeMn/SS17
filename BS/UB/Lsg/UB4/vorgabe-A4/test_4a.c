@@ -58,7 +58,6 @@ int main(void)
 	puts("--- Teste normale Operationen");
 
 	puts("buddy_free(&A):");
-    printf("searching: %p\n", bst[1]);
 	buddy_free(node_start_addr(&bst[1]));
 	memory_dump();
 	assert(bst[1] == NODE_FREE);

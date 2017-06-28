@@ -19,14 +19,16 @@ node_t search(void *addr, node_t node){
     }
     // tmp node will either be NULL or a correct node
     node_t tmp;
-    if(bst_left(node) != NULL){
-        tmp = search(addr, bst_left(node));
+    node_t left = bst_left(node);
+    node_t right = bst_right(node);
+    if(left != NULL){
+        tmp = search(addr, left);
         if(tmp != NULL){
             return tmp;
         }
     }
-    if(bst_right(node) != NULL){
-        tmp = search(addr, bst_right(node));
+    if(right != NULL){
+        tmp = search(addr, right);
         if(tmp != NULL){
             return tmp;
         }
@@ -56,6 +58,7 @@ void buddy_free(void *addr)
         // Finding Nemo, hehe
         node_t nemo = search(addr, bst_root());
         // ii)
+        // should interfere, if there was no fitting knot
         if(nemo == NULL){
             // Fehlerbehandlung
             perror("Ungültige Adresse, die z.B. nicht der Startadresse eines belegten Speicherbereichs entspricht");
@@ -71,7 +74,7 @@ void buddy_free(void *addr)
         //
         // nach einem langem Abenteuer und einer aufregenden Flucht
         // vor der Tochter eines lokalen Zahnarztes ist nemo endlich frei
-        // *nemo = NODE_FREE;
+        // *nemo = NODE_FREE ist aus bst_housekeeping implizit
         bst_housekeeping(bst_parent(nemo));
     }
 }

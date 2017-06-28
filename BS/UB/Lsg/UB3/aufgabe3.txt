@@ -1,0 +1,44 @@
+Übungsaufgabe 3:
+
+a) Theoriefragen:
+
+1.)
+
+Damit es zu einem Deadlock kommen kann müssen 4 Bedingungen gelten. Dazu gehören:
+
+    1.) "mutual exclusions" dies bedeutet, dass nur ein Prozess zur gleichen Zeit auf
+    eine Ressource, die für beide relevant ist, zugreifen darf.
+
+    2.) "hold and wait" dies bedeutet, dass Prozesse gegenseitig auf die Zuweisung von
+    Ressourcen warten müssen und währenddessen die ihm bereits zugeteilten Ressourcen
+    noch belegen.
+
+    3.) "no preemption" dies bedeutet, dass die Ressourcen die einem Prozess zugeteilt
+    wurden nicht einfach weggenommen werden dürfen.
+
+    4.) "circular wait" dies bedeutet, dass es eine in sich verschlossene Kette von
+    Prozessen gibt, in der jeder Prozess mindestens eine Ressource hält die dann von
+    einem anderen Prozess gefordert wird. (Bsp.: Die fünf speisenden Philosophen BS:06 F22)
+
+In unserer Aufgabe können unter Beachtung der o.g. 4 Bedingungen Deadlocks auftreten,
+denn es kommen 1.) "mutual exclusions" vor, da Fäden bzw. Threads auf die selben Ressourcen
+zugreifen.
+Außerdem kann 2.) "hold and wait" entstehen, denn jeder Faden belegt bei der Durchführung
+Speicher und kann auch mehr anfordern. Falls dieses bereits belegt ist wird der Faden
+"schlafen gelegt" wodurch der bereits zugeteilte Speicher beim schlafenden Faden bleibt.
+Des weiteren gilt 3.) "no preemption", da jeder Faden erst den gesamten für sich belegten
+Speicher wieder abgibt wenn dieser fertig ist.
+Zuletzt kann auch eine 4.) "circular wait" Situation auftreten, denn jeder Faden
+belegt Speicher und kann neuen anfordern wodurch mehrere Threads den belegten Speicher
+vom nächsten anfordern können. Somit kann eine Kette entstehen in der jeder Thread auf den
+nächsten wartet.
+
+
+2.)
+
+Um Deadlocks zu vermeiden kann man eine der o.g. Bedingungen entkräften. In unserer
+Situation könnten man z.B. 3.) "no preemption" vermeiden, indem Threads die mehr
+Speicher fordern, diesen aber nicht erhalten können weil er bereits belegt ist, alle
+ihre bereits zugeteilten Ressourcen wieder frei geben. Wenn der benötigte Speicher zu
+einem späteren Zeitpunkt wieder zur Verfügung steht kann der Thread diesen dann auch wieder
+anfordern.

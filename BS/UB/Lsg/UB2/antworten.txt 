@@ -1,0 +1,37 @@
+Übungsaufgabe 2:
+
+1. Scheduling:
+
+1.)
+
++---+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+| A | C C C I I I I             C C C I I I I             C C C I | C: Prozess nutzt die CPU
+| B |           C C C C C C I I I I I     C C C C C C I I I I I   | I: Prozess führt I/O-Operationen durch
+| C |       C C I I         C C I I   C C I I         C C I I   C |
++---+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+      1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+
+
+2.) Das SPN Scheduling Verfahren birgt das Problem, dass die Vorhersage der Laufzeiten nicht genau bestimmt werden kann.
+    Außerdem laufen besonders CPU-lastige Prozesse in Gefahr in die "Aushungerung" oder auch "starvation" zu geraten.
+    Hier kommt der Prozess fast nie zur Ausführung da die kurzen bzw. Leichtgewichtigen Prozesse bevorzugt werden.
+
+
+2. Synchronisation:
+
+1.) Race-Conditions treten auf wenn verschiedene Prozesse gleichzeitig auf Datenbestände zugreifen und mindestens einer
+    dieser Prozesse die Daten verändert. So entsteht die Situation, dass gleichzeitig gelesen und umgeschrieben wird.
+    Der Wert den die Prozesse dann erhalten hängt von der Reihenfolge ab wie diese auf die Daten zugreifen. Dadurch entsteht
+    die Gefahr, dass die Ergebnisse falsch oder unvorhersehbar sein können.
+
+2.) Unter aktiven Warten versteht man das Zusammenspiel von Prozessen welche durch warten miteinander kooperieren. Die Reihenfolge
+    der Abarbeitung wird somit geregelt wodurch es zu keiner Gleichzeitigen Ausführung von Aktionen kommt welche z.B. bei den
+    o.g. Race-Conditions auftreten.
+    Dieses Verfahren wendet z.B der s.g. "Bäckerei Algorithmus" an in dem jeder Prozess eine Wartenummer erhält und somit
+    aktiv wartet. Das Abarbeiten erfolgt dann anhand der Nummern. Also sobald ein Prozess fertig ist verfällt dessen Nummer
+    und der nächste mit der niedrigsten Zahl ist an der Reihe.
+
+    Allerdings birgt das aktive Warten auch einige Probleme, denn die aktiv wartenden Prozesse können selbst keine Änderungen der
+    Bedingungen vornehmen obwohl sie aktiv sind. Dadurch werden unnötig Ressourcen verbraucht und sie behindern dadurch andere
+    Prozesse. Dadurch wird unnötig Prozessorzeit verschwendet und der Prozess schadet sich letztendlich selbst da dieser durch
+    die Ressourcenverschwendung länger warten muss bis die Bedingung des Prozesses, der gerade an der Reihe ist, erfüllt ist.

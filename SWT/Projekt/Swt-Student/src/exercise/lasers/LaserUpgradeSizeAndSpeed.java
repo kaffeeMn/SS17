@@ -3,7 +3,6 @@ package exercise.lasers;
 import edu.udo.cs.swtsf.core.player.Laser;
 import edu.udo.cs.swtsf.core.player.LaserUpgrade;
 
-// TODO: implement into the game
 
 public class LaserUpgradeSizeAndSpeed implements LaserUpgrade{
     private Laser decorated = null;

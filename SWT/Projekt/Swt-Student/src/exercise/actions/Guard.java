@@ -16,7 +16,6 @@ public class Guard implements EntityBehaviorStrategy{
 
     public void act(Entitiy host){
         if(lifeSpan > 0){
-            // TODO: remove all damage
             --lifeSpan;
         }
         if(coolDownTimer > 0){

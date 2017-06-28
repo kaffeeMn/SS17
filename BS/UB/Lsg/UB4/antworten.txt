@@ -1,0 +1,51 @@
+Übungsaufgabe 4:
+
+1.) Best Fit
+
+|- - - - - - - - - - - - - - - -| 16 MB freier Speicher
+|A A A A A - - - - - - - - - - -| A belegt 5 MB
+|A A A A A B B B B B B - - - - -| B belegt 6 MB
+|A A A A A B B B B B B A A - - -| A belegt 2 MB
+|A A A A A - - - - - - A A - - -| B gibt seinen Speicher frei
+|A A A A A - - - - - - A A C C -| C belegt 2 MB
+|A A A A A C C C C C - A A C C -| C belegt 5 MB
+|A A A A A C C C C C - A A C C -| D fordert 2 MB -> abgelehnt
+ 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6
+
+ Die Anfrage "D fordert 2 MB" wird abgelehnt da kein freier Speicherblock für 2 MB
+ zur Verfügung steht.
+
+
+2.) Verschnitt
+
+Verschnitt bedeutet, dass der Speicher schlecht ausgenutzt wird und nach und nach
+Blöcke bzw. Speicherfragmente entstehen die nicht mehr verwendet werden können.
+
+Es gibt außerdem 2 Arten von Verschnitt:
+  1.) Externer Verschnitt: Außerhalb des zugeteilten Speicherbereiches entstehen
+      Fragmente die nicht mehr verwendet werden können.
+
+  2.) Interner Verschnitt: Innerhalb des Speicherbereichs existiert ungenutzte
+      Speicherfragmente.
+
+Bei der "Best Fit" Strategie kann es zu einem "Externen Verschnitt" (1.)
+kommen, denn bei dieser Strategie wird immer nach dem bestmöglichen passenden freien
+Speicherfragment gesucht. Der Block wird auch belegt wenn dieser größer ist. Somit
+entstehen Lücken die nicht mehr verwendet werden können und es kommt zu einem Verschnitt.
+
+Bei dem "Buddy Verfahren" kann es auch zu einem Verschnitt kommen (auch: Interner Verschnitt
+2.), denn bei diesem Verfahren werden die Anforderungen auf 2er Potenzen aufgerundet.
+Dadurch entsteht innerhalb des Speicherbereiches ungenutzter Speicher.
+
+-> Bsp.: 257 Byte wird auf 512 Byte aufgerundet
+         Es entsteht 255 Byte ungenutzter Speicher
+
+
+?3.) Baumstruktur und Buddy-Verfahren
+
+Eine Baumstruktur ist hier vom Vorteil, da bei dem Buddy Verfahren die Blöcke immer dynamisch
+nach 2er Potenzen halbiert werden dies lässt sich, im Gegensatz zu linearen Datenstrukturen, gut
+in einem Binärbaum durch die einzelnen Ebenen darstellen.
+
+Eine abweichende Wahl der Baumhöhe würde bewirken, dass die Speicherbereiche größer wären und es
+weniger Blöcke gäbe.

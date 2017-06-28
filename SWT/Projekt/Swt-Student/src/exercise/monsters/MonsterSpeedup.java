@@ -9,5 +9,4 @@ public class MonsterSpeedup extends AbstractMonster{
         setHitpoints(getMaxHitpoints()); 
         addDefaultStrategies();
     }
-    //TODO: find method that is called when monster is hit
 }
