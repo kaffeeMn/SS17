@@ -5,7 +5,7 @@ public class Naive extends Method{
     }
     @Override
     public int[] call(){
-        return null;
+        int[] arr = this.array;
+        return arr;
     }
-
 }
