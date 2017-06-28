@@ -3,7 +3,7 @@
 
 #include "bst.h"
 
-void search(void *addr, node_t node);
+node_t search(void *addr, node_t node);
 void buddy_free(void *addr);
 
 #endif
