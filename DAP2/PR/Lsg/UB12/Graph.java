@@ -86,4 +86,10 @@ public class Graph{
         }
         return str;
     }
+    public String bfs(int id){
+        try{
+        }catch(Exception e){
+        }
+        return null;
+    }
 }

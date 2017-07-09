@@ -1,0 +1,68 @@
+\documentclass{article}
+\author{Max Springenberg, 177792}
+\title{
+    GTI UB11\\
+    Vorueberlegungen
+}
+\date{}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\setcounter{section}{11}
+% \Theta \Omega \omega
+\newcommand{\tab}{\null \qquad}
+\newcommand{\lA}{$\leftarrow$}
+\newcommand{\ue}{$\infty$}
+
+\begin{document}
+\maketitle
+\newpage
+\subsection{Satz von Rice}
+\begin{tabular}{l|l}
+    Frage&
+    Antwort\\
+    \hline
+
+    wann sind Turing-berechenbare\\
+    Funktionen entscheidbar?
+    &mit:\\
+    &$R = \{$f $|$ f berechenbar$\}$\\
+    &$\emptyset \neq S \neq R$\\
+    &$TM-FUNC(S) =$ ist $f_M \in S$?\\
+    &ist TM-FUNC(S) unentscheidbar\\
+    \\
+    wann sind Probleme entscheidbar?
+    &alle Probleme mit:\\
+    &$PROBLEM \leq TM-FUNC(S)$\\
+    &sind ueber die Reduzierbarkeit unentscheidbar.\\
+    \\
+\end{tabular}
+
+\subsection{Abschlusseigenschaften}
+\begin{tabular}{l|l}
+    Frage&
+    Antwort\\
+    \hline
+
+    Was ist semientscheidbar?
+    &Eine Menge/Sprache L ist genau dann \\
+    &semientscheidbar, wenn:\\
+    &$L \subseteq \Sigma^* \land \exists M.L = L(M)$\\
+    &fuer eine beliebige TM M\\
+    Unter welchen Vorraussetzungen kann man\\
+    sagen, dass eine Menge/Sprache abhaengig\\
+    von einer anderen entscheidbar ist?\\
+    &L entscheidbar $\Leftrightarrow L$ und $\bar L$ semientscheidbar\\
+    &
+    \\
+\end{tabular}
+
+\subsection{Entscheidbarkeit / Semientscheidbarkeit}
+\begin{tabular}{l|l}
+    Frage&
+    Antwort\\
+    \hline
+
+\end{tabular}
+\end{document}
