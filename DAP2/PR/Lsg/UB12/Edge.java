@@ -6,10 +6,10 @@ public class Edge{
         this.src = src;
         this.dst = dst;
     }
-    public src(){
+    public Node src(){
         return this.src;
     }
-    public dst(){
+    public Node dst(){
         return this.dst;
     }
     public String toString(){

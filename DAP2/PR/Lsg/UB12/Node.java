@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Node{
-    private final id;
+    private final int id;
     private ArrayList<Edge> adjList;
     
     public Node(int id){
@@ -14,13 +14,13 @@ public class Node{
     public ArrayList<Edge> getAdjList(){
         return this.adjList;
     }
-    public void appendAdjList(Edge e){
-        this.adjList.append(e);
+    public void addAdjList(Edge e){
+        this.adjList.add(e);
     }
     public void addEdge(Node dst){
         Edge newEdge = new Edge(this, dst);
-        dst.appendAdjList(newEdge);
-        this.adjList.append(newEdge);
+        dst.addAdjList(newEdge);
+        this.adjList.add(newEdge);
     }
     public boolean equals(Object other){
         if(other instanceof Node){
@@ -34,5 +34,6 @@ public class Node{
         for(Edge edge: this.adjList){
             str += String.format("%1$s\n", edge.toString());
         }
+        return str;
     }
 }
