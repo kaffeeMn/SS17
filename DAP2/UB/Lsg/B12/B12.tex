@@ -53,48 +53,59 @@ Daraus resultiert die maximale Kantenzahl: $\frac{(n-1) * (n-2)}{2}$\\
 \newpage
 \subsection{Algorithmus von Dijkstra}
 \subsubsection \
+Im folgendem werden die Resultate nach jedem Durchlauf $dL_i$ der While-Schleife angegeben.\\
+\\
 \begin{tabular}{l|l|l|l|l|l}
-         & a&  b&  c&  d&  e\\
+    \hline
+    $dL_0$& a&  b&  c&  d&  e\\
     \hline
     d    & 0&\ue&\ue&\ue&\ue\\
     color& w&  w&  w&  w&  w\\
 \end{tabular}\\
 $u = a$\\
 $Q=\{(a, 1), (b, \infty), (c, \infty), (d, \infty), (e, \infty)\}$\\
+\underline{\hspace{10 cm}}
+\\
 \\
 \begin{tabular}{l|l|l|l|l|l}
     \hline
-         &  a&  b&  c&  d&  e\\
+    $dL_1$&  a&  b&  c&  d&  e\\
     \hline
     d    &  0&  4&\ue&  1& 12\\
     color&  s&  w&  w&  s&  w\\
 \end{tabular}\\
 $u = d$\\
 $Q=\{(d, 1), (b, 4), (e, 12), (c, \infty)\}$\\
+\underline{\hspace{10 cm}}
+\\
 \\
 \begin{tabular}{l|l|l|l|l|l}
     \hline
-         &  a&  b&  c&  d&  e\\
+    $dL_2$&  a&  b&  c&  d&  e\\
     \hline
     d    &  0&  4& 14&  1&  2\\
     color&  s&  w&  w&  s&  s\\
 \end{tabular}\\
 $u = e$\\
 $Q=\{(b, 4), (d, 14)\}$\\
+\underline{\hspace{10 cm}}
+\\
 \\
 \begin{tabular}{l|l|l|l|l|l}
     \hline
-         &  a&  b&  c&  d&  e\\
+    $dL_3$&  a&  b&  c&  d&  e\\
     \hline
     d    &  0&  4&  6&  1&  2\\
     color&  s&  s&  w&  s&  s\\
 \end{tabular}\\
 $u = b$\\
 $Q=\{(c, 4)\}$\\
+\underline{\hspace{10 cm}}
+\\
 \\
 \begin{tabular}{l|l|l|l|l|l}
     \hline
-         &  a&  b&  c&  d&  e\\
+    $dL_4$&  a&  b&  c&  d&  e\\
     \hline
     d    &  0&  4&  6&  1&  2\\
     color&  s&  s&  s&  s&  s\\
@@ -103,8 +114,8 @@ $u = c$\\
 $Q=\emptyset$\\
 \\
 
+
 \subsubsection \
 Die Heap-Eigenschaft eines AVL-Baumes wieder her zu stellen benoetigt O(log(n)), wir muessen unsere Liste immer wieder
-neu sortieren und landen damit in O(n*log(n)).
-
+neu sortieren und landen damit in O(n*log(n)), unter Verwendung eines angepassten merge-sort Algorithmus.
 \end{document}

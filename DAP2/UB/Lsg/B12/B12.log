@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  4 JUL 2017 22:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  9 JUL 2017 21:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -263,37 +263,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--52
  []
 
 [2 <./1a.png>] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--105
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
 
  []
 
 
-Overfull \hbox (10.55612pt too wide) in paragraph at lines 107--109
+Underfull \hbox (badness 10000) in paragraph at lines 56--116
+
+ []
+
+
+Overfull \hbox (10.55612pt too wide) in paragraph at lines 119--121
 \OT1/cmr/m/n/10 Die Heap-Eigenschaft eines AVL-Baumes wieder her zu stellen be-
 noetigt O(log(n)),
  []
@@ -302,7 +307,7 @@ noetigt O(log(n)),
 Here is how much of TeX's memory you used:
  2555 strings out of 493013
  32735 string characters out of 6139317
- 95950 words of memory out of 5000000
+ 96950 words of memory out of 5000000
  6057 multiletter control sequences out of 15000+600000
  12122 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -316,9 +321,9 @@ cm/dpi600/cmbx10.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cm
 bx12.600pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> <
 /usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </usr/share/te
 xmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17.pk>
-Output written on B12.pdf (4 pages, 457357 bytes).
+Output written on B12.pdf (4 pages, 459519 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
+ 217 PDF objects out of 1000 (max. 8388607)
  51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
