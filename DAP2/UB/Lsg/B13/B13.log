@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  16 JUL 2017 14:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.5.27)  17 JUL 2017 00:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,28 +587,139 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--66
 
  []
 
-[2] (./B13.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--99
+
+ []
+
+[2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 102--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--162
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--191
+
+ []
+
+[5] [6] (./B13.aux) ) 
 Here is how much of TeX's memory you used:
  15344 strings out of 493013
  296525 string characters out of 6139317
- 348279 words of memory out of 5000000
+ 353277 words of memory out of 5000000
  18585 multiletter control sequences out of 15000+600000
  12122 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,7n,96p,410b,870s stack positions out of 5000i,500n,10000p,200000b,80000s
- </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy7
-.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm
-10.600pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy10.pk> </
-usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmmi10.pk> </usr/share/te
-xmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmbx10.pk> </home/max/.texlive/texmf-
-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> </usr/share/texmf-dist/fonts/pk/ljf
-our/public/cm/dpi600/cmr10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm
-/dpi600/cmr12.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17
-.pk>
-Output written on B13.pdf (2 pages, 41794 bytes).
+ </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/c
+mr7.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmmi7.pk> </usr
+/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy7.pk> </home/max/.texliv
+e/texmf-var/fonts/pk/ljfour/public/amsfonts/symbols/msbm10.600pk> </usr/share/t
+exmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy10.pk> </usr/share/texmf-dist/fo
+nts/pk/ljfour/public/cm/dpi600/cmmi10.pk> </usr/share/texmf-dist/fonts/pk/ljfou
+r/public/cm/dpi600/cmbx10.pk> </home/max/.texlive/texmf-var/fonts/pk/ljfour/pub
+lic/cm/cmbx12.600pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cm
+r10.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </usr
+/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr17.pk>
+Output written on B13.pdf (6 pages, 69645 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 267 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
