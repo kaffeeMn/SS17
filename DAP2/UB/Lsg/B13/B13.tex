@@ -192,28 +192,46 @@ korrekte Ausgaben gibt.\\
 
 \subsection{Bonus: Dynamische Programmierung}
 \subsubsection \
-Wir definieren zunaechst eien Rekursionsgleichung, die zum Erreichen des Blocks (i,j) die minimale Distanz ausgibt.\\
-$
-E'(i,j) = \begin{cases}
-    \ue               &, i=0\\
-    0                 &, j=0\\
-    $min\{E(i-1, j-1), E(i,j-1)\} + S(i, j)$, sonst\\
-\end{cases}\\
-$
-Nun, da wir die kuerzeste Distanz zu einem Block berechnen koennen, koennen wir auch fuer jedes j die kuerzeste Distanz
-bis einschliesslich i berechnen.\\
+Das Probelem, der Aufgabe ist die Referenz auf die i-Position aufrecht zu erhalten. Es ist moeglich dass bis zum 
+Block $b_{i,j}$ es zweite gleich grosse minimale Strafen gibt, deren i-Differenz groesser 2 ist.\\
+Im darauf folgenden j' = j+1 muessen dann alle i-Position beruecksichtigt werden, die eine optimale Strafe ausgeben 
+koennten.\\
+Damit die Referenz auf die i-Position(en) aufrecht zu erhalten fuellen wir auch noch das Feld pos(i,j), dass fuer jedes
+i, j eine Liste mit den i-Positionen enthaelt.\\
+\\
+E = \begin{cases}
+
+\end{cases}
 \subsubsection \
 RUN(S):\\
 \tab E \lA new Array[0...length(S)][0...lengthS[0]]\\
+\tab pos \lA new Array[1...length(S)][1...lengthS[0]]\\
 \tab for i \lA 0 to length(E) do\\
 \tab \tab E[i][0] \lA \ue\\
 \tab for j \lA 1 to length(E[0]) do\\
 \tab \tab E[0][j] \lA 0\\
 \tab for j \lA 1 to length(E) do\\
 \tab \tab E[1][j] \lA E[1][j-1] + S[1][j]\\
+\tab \tab pos[1][j] \lA 1\\
+\tab tmp1 \lA \ue\\
+\tab tmp2 \lA 0\\
+
 \tab for i \lA 2 to length(E) do\\
 \tab \tab for j \lA 1 to length(E[0]) do\\
-\tab \tab \tab E[i][j] \lA $min\{S[i-1,j], S[i,j]\} + E[i][j-1]$\\
+\tab \tab \tab for each $p \in pos[i][j-1]$
+\tab \tab \tab \tab val1 \lA S[p][j] + E[i][j-1]\\
+\tab \tab \tab \tab val2 \lA S[p][j] + E[i-1][j-1]\\
+\tab \tab \tab \tab val3 \lA S[p-1][j] + E[i][j-1]\\
+\tab \tab \tab \tab val4 \lA S[p-1][j] + E[i-1][j-1]\\
+\tab \tab \tab \tab tmp1 \lA $min\{val1, val2, val3, val4\}$\\
+\tab \tab \tab \tab if tmp1 = $min\{val1, val2\}$ then\\
+\tab \tab \tab \tab \tab tmp2 += 1
+\tab \tab \tab \tab else
+\tab \tab \tab \tab \tab tmp2 = 0
+
+
+
+
 \tab result \lA \ue\\
 \tab for i \lA 1 to length(E) do\\
 \tab \tab result \lA $min\{result, E[i][length(E[0])]\}$\\
