@@ -1,15 +1,43 @@
+import java.util.LinkedList;
+
 public class MinStepCount{
     private final boolean[] parcour;
     private final int       steps;
     private int[][]         matrix;
     
     public MinStepCount(boolean[] parcour, int steps){
-        this,parcour = parcour;
+        this.parcour = parcour;
         this.steps   = steps;
         this.matrix  = functionC();
     }
-    private static int[][] functionC(){
-        int[][] result = new int[this.steps+this,parcour.length][steps+1];
+    private int min(int... vals){
+        if(vals.length>0){
+            int min = vals[0];
+            for(int i=1; i<vals.length; ++i){
+                if(min > vals[i]){
+                    min = vals[i];
+                }
+            }
+            return min;
+        }else{
+            throw new IllegalArgumentException("Empty array submitted");
+        }
+    }
+    private int max(int... vals){
+        if(vals.length>0){
+            int max = vals[0];
+            for(int i=1; i<vals.length; ++i){
+                if(max < vals[i]){
+                    max = vals[i];
+                }
+            }
+            return max;
+        }else{
+            throw new IllegalArgumentException("Empty array submitted");
+        }
+    }
+    private int[][] functionC(){
+        int[][] result = new int[this.steps+this.parcour.length][steps+1];
         for(int i=this.steps+1; i<result.length; ++i){
             result[i][0] = Integer.MAX_VALUE;
         }
@@ -36,24 +64,30 @@ public class MinStepCount{
         }
         return result;
     }
-    public get(int i, int v){
+    public int get(int i, int v){
         return this.matrix[i][v];
     }
-    public sequenceOfSteps(int x){
-        int index = 0;
-        int tmp = this,matrix[x][0]
-        for(int i=1; i<this.matrix[x].length; ++i){
-            if(tmp > matrix[x][i]){
-                tmp = matrix[x][i];
-                index = i;
-            }
-        }
-        LinkedList<Integer> route = backtracking(x, index);
+    public void sequenceOfSteps(int x){
+        LinkedList<Integer> route = backtracking(x);
         displayRoute(route);
     }
-    private LinkedList<Integer> backtracking(int x, int index){
+    private LinkedList<Integer> backtracking(int x){
         LinkedList<Integer> result = new LinkedList<Integer>();
-        // TODO: find backtracking algorithm
+        int val = Integer.MAX_VALUE;
+        boolean add = false;
+        while(x >= 0){
+            for(int i=0; i<=this.steps; ++i){
+                if(matrix[x][i] < val){
+                    val = matrix[x][i];
+                    add = true;
+                }
+            }
+            if(add){
+                result.add(0, x);
+                add = false;
+            }
+            --x;
+        }
         return result;
     }
     private void displayRoute(LinkedList<Integer> route){

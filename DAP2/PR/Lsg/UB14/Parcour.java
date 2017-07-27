@@ -3,20 +3,20 @@ public class Parcour{
     
     private static boolean[] generateParcours(int length, int hurdles){
         Random randFac   = new Random();
-        boolean[] result = new boolean[n];
-        int len = result.length;
-        for(int i=0; i<len; ++i){
+        boolean[] result = new boolean[length];
+        for(int i=0; i<length; ++i){
             result[i] = true;
         }
         int hurdleCount = 0;
         int pos;
         while(hurdleCount < hurdles){
-            pos = (int) (randFac.nextDouble() * len);
+            pos = (int) (randFac.nextDouble() * length);
             if(!result[pos]){
                 result[pos] = false;
                 ++hurdleCount;
             }
         }
+        return result;
     }
     private static void showParcour(boolean[] parcour){
         if(parcour.length <= 50){
@@ -38,16 +38,16 @@ public class Parcour{
             throw new IllegalArgumentException("Bad input");
         }else{
             try{
-                int n = Integer.parseint(args[0]);
-                int k = Integer.parseint(args[1]);
-                int r = Integer.parseint(args[2]);
+                int n = Integer.parseInt(args[0]);
+                int k = Integer.parseInt(args[1]);
+                int r = Integer.parseInt(args[2]);
+                boolean[] parcour = generateParcours(n, k);
+                MinStepCount minSteps = new MinStepCount(parcour, r);
+                minSteps.sequenceOfSteps(0);
             }catch(Exception e){
-                System.out.pritnln("Failed to parse Integers");
+                System.out.println("Failed to parse Integers");
                 e.printStackTrace();
             }
-            boolean[] parcour = generateParcours(n, k);
-            MinSteoCount minSteps = new MinSteoCount(parcour, r);
-            minSteps.sequenceOfSteps();
         }
     }
 }
